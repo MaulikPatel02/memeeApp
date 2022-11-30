@@ -1,13 +1,5 @@
 # Memee App
 
-
-## Built with
-- React JS
-- Redux
-- Bootstrap
-- Material Ui
-
-
 ## Installing
 - Please run `yarn install` or `npm install` to get required packages
 - Runs the app in the development mode.
