@@ -1,29 +1,39 @@
 # Memee App
 
 
-# Built with
-. React JS
+## Built with
+- React JS
+- Redux
+- Bootstrap
+- Material Ui
 
 
-# Available Scripts
-In the project directory, you can run:
+## Prerequisites
+- Basic knowledge about javascript, react, redux, etc.
 
-# npm start
-Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
+## Installing
+- Please run `yarn install` or `npm install` to get required packages
+- Runs the app in the development mode.
+- Open http://localhost:3000 to view it in the browser.
+- You can also update the packages by `yarn update` and `npm update`
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+## Built With
+- React - Javascript Library for creating UI
+- React-Router
+- Redux - A predictable state container for JavaScript apps.
+- Much More..
 
-# npm test
-Launches the test runner in the interactive watch mode.
-See the section about running tests for more information.
 
-# npm run build
-Builds the app for production to the build folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributing
+- If you have problems please leave an issue from here
+- Consider forking the project and submitting new pull requests. I am much likely control my github account.
+- You can reach out 😊😊
+- Feel free to contact me about the problems. I will try to help as much as I can 😉.
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
 
-See the section about deployment for more information.
+```
+Thank You !!!
+
+If you find this repository helpful, please give it a ⭐🌟
+
+You can leave your suggestions in the discussions tab of this repository 🤗
