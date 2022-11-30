@@ -8,9 +8,6 @@
 - Material Ui
 
 
-## Prerequisites
-- Basic knowledge about javascript, react, redux, etc.
-
 ## Installing
 - Please run `yarn install` or `npm install` to get required packages
 - Runs the app in the development mode.
