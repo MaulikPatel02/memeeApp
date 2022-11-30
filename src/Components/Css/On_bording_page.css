@@ -1,0 +1,96 @@
+.onbordinglogo img{
+    height: 55px;
+}
+.onbordinglogo{
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+.email{
+   background:var(--onbording_input_color);
+   display: flex;
+    padding: 15px;
+    border-radius: 25px;
+   justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+}
+.email img{
+    height: 15px;
+    width: 15px;
+    margin-right: 10px;
+}
+.email h4{
+    font-size: 16px;
+    color: var(--onbording_input_text_color);
+    font-weight: 600;
+    margin: 0;
+}
+#emailofonbording{
+    color: var(--onbordingemailicon_color);
+    margin-right: 10px;
+}
+.email2{
+    display: flex;
+    padding: 15px;
+    border-radius: 25px;
+   justify-content: center;
+    align-items: center;
+    border: 1px solid  rgba(97, 97, 97, 1);
+    margin-top: 20px;
+}
+.email2 img{
+    height: 15px;
+    width: 15px;
+    margin-right: 10px;
+}
+.email2:nth-child(2) img{
+    height: 15px;
+    width: 15px;
+    margin-left: -10px;
+}
+.email2:nth-child(4) img{
+    height: 15px;
+    width: 15px;
+    margin-left: -14px;
+}
+.email2 h4{
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    margin: 0;
+   
+}
+.email3{
+    display: flex;
+    padding: 15px ;
+    border-radius: 25px;
+    align-items: center;
+    border: 1px solid  rgba(97, 97, 97, 1);
+    margin-top: 20px;
+    justify-content: center;
+}
+.email3 h4{
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+    margin: 0;
+}
+.movesignup{
+    text-align: center;
+    margin-top: 110px;   
+    width: 100%;
+    
+}
+.movesignup h4{
+    font-size: 15px;
+    color: var(  --movesignupcolor_paragraph);
+}
+.movesignup h4 span{
+    color: var(--movesignupspan_color)
+}
+.movesignup p{
+    color: var(  --movesignupcolor_paragraph);
+    font-size: 12px;
+    margin: 0;
+}
