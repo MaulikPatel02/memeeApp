@@ -10,7 +10,6 @@ export default function Post_Img_Page() {
   return (
     <>
       <div className="Post_Img_Page">
-       
         <div className="CommentsArrow">
           <Link to="/Profile">
             <img src={Back_Arrow}></img>{" "}
@@ -19,21 +18,20 @@ export default function Post_Img_Page() {
           <h3>Details</h3>
         </div>
 
-
         <div className="P_I_post">
-            <h2>January 1, 2022</h2>
-            <img src={post}></img>
+          <h2>January 1, 2022</h2>
+          <img src={post}></img>
         </div>
 
         <div className="P_I_like">
-            <div className="P_I_like_1">
-                <img src={like}></img>
-                <h5>324</h5>
-            </div>
-            <div className="P_I_like_2">
-                <img src={not_like}></img>
-                <h5>12</h5>
-            </div>
+          <div className="P_I_like_1">
+            <img src={like}></img>
+            <h5>324</h5>
+          </div>
+          <div className="P_I_like_2">
+            <img src={not_like}></img>
+            <h5>12</h5>
+          </div>
         </div>
       </div>
     </>

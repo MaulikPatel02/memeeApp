@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Css/Chat.css";
 import back from "../images/Chat_page/back.png";
 import Chat_profile from "../images/Chat_page/Chat_profile.png";
@@ -9,6 +9,19 @@ import send from "../images/Chat_page/send.png";
 import emoji from "../images/Chat_page/emoji.png";
 
 export default function Chat() {
+  const [inputList, setInputList] = useState("");
+  const [Item, setItem] = useState([]);
+
+  const itemEvent = (event) => {
+    setInputList(event.target.value);
+  };
+  const listOfItem = () => {
+    setItem((oldItems) => {
+      return [...oldItems, inputList];
+    });
+    setInputList("");
+  };
+
   return (
     <>
       <div className="chat_page">
@@ -28,70 +41,37 @@ export default function Chat() {
         </div>
 
         <div className="Chat_Chat">
-          <div className="user_chat_1_1">
-            <div className="user_chat_1">
-              <h5>Hey are you enjoying memes?</h5>
-            </div>
-          </div>
+          <div className="user_chat_1_1"></div>
 
           <div className="user_chat_2">
-            <h5>Yes, Its so funny</h5>
+            <h5>Are You Enjying Memee App ?</h5>
           </div>
 
-          <div className="user_chat_1_1">
-            <div className="user_chat_1">
-              <h5>
-                I was just wondering if you can help me in myin collecting memes
-                data circulating these days.
-              </h5>
-            </div>
-          </div>
-
-          <div className="user_chat_2">
-            <h5>Ok, sure. Lets have some fun today.</h5>
-          </div>
-
-          <div className="user_chat_2">
-            <h5>
-              BTW I am impressed by your creativity, Last meme went viral🔥
-            </h5>
-          </div>
-
-          <div className="user_chat_2">
-            <h5>Ok, sure. Lets have some fun today.</h5>
-          </div>
-
-          <div className="user_chat_1_1">
-            <div className="user_chat_1">
-              <h5>Hey are you enjoying memes?</h5>
-            </div>
-          </div>
-
-          <div className="user_chat_2">
-            <h5>Ok, sure. Lets have some fun today.</h5>
-          </div>
-
-          <div className="user_chat_2">
-            <h5>
-              BTW I am impressed by your creativity, Last meme went viral🔥
-            </h5>
-          </div>
-
-          <div className="user_chat_1_1">
-            <div className="user_chat_1">
-              <h5>Hey are you enjoying memes?</h5>
-            </div>
-          </div>
+          {Item.map((itemVal, index) => {
+            return (
+              <div key={index} className="user_chat_1_1">
+                <div className="user_chat_1">
+                  <h5>{itemVal}</h5>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className="chat_keyboard">
           <img src={Gallery}></img>
           <div className="chat_input">
-            <input type="text" placeholder="Aa"></input>
+            <input
+              type="text"
+              onChange={itemEvent}
+              value={inputList}
+              placeholder="Aa"
+            ></input>
             <img id="chat_emoji" src={emoji}></img>
           </div>
           {/* <img src={send}></img> */}
           <svg
+            onClick={listOfItem}
             width="30"
             height="40"
             viewBox="0 0 23 25"

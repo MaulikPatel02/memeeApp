@@ -8,10 +8,31 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 
 export default function Edit_Profile_Page() {
-  const [name, setName] = useState("");
+
+
+   const [name, setName] = useState("");
   const [phone_no, setPhone_no] = useState("");
   const [bio, setBio] = useState("");
   const [profile, setProfile] = useState("");
+  const uploadedImage = React.useRef(null);
+  const imageUploader = React.useRef(null);
+
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      const reader = new FileReader();
+      const { current } = uploadedImage;
+      current.file = file;
+      reader.onload = (e) => {
+        current.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  //  image upload end
+
+ 
 
   async function editProfile() {
     var myHeaders = new Headers();
@@ -24,7 +45,7 @@ export default function Edit_Profile_Page() {
     data.append("phone_no", phone_no);
     data.append("bio", bio);
     data.append("profile", profile);
-
+    console.log("profile", profile);
     var requestOptions = {
       method: "POST",
       body: data,
@@ -59,16 +80,22 @@ export default function Edit_Profile_Page() {
         <div className="E">
           <div className="E_1">
             <div className="E_1_1">
-              <img id="E_1" value={profile} src={edit_profile}></img>
+              <img id="E_1" ref={uploadedImage} src={edit_profile}></img>
               <input
                 id="fileupload"
                 type="file"
                 accept="/images/*"
-                onChange={(e) => setProfile(e.target.files[0])}
+                onChange={handleImageUpload}
+                ref={imageUploader}
               ></input>
               {/* <img  src={edit_2}></img> */}
               <div id="E_1edit">
-                <img value={profile} src={edit_uplod_profile}></img>
+                <img
+                  value={profile}
+                  onChange={(e) => setProfile(e.target.files[0])}
+                  onClick={() => imageUploader.current.click()}
+                  src={edit_uplod_profile}
+                ></img>
               </div>
             </div>
             <h1>Mr Astronut</h1>

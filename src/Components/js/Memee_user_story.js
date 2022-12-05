@@ -19,7 +19,6 @@ export default function Memee_user_story() {
         profileImage: "https://picsum.photos/100/100",
       },
     },
-   
   ];
   return (
     <>

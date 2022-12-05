@@ -8,7 +8,7 @@ import User_3 from "../images/Message_page/User_3.png";
 import Active from "../images/Message_page/Active.png";
 import right from "../images/Message_page/right.png";
 import Edit from "../images/Message_page/Edit.png";
-import { CiEdit } from 'react-icons/ci';
+import { CiEdit } from "react-icons/ci";
 
 export default function Inbox_Message_page() {
   const tableData = [
@@ -100,7 +100,7 @@ export default function Inbox_Message_page() {
   return (
     <>
       <div className="Inbox">
-      <div className="Inbox_lite">
+        <div className="Inbox_lite">
           <div className="Inbox_Arrow">
             <Link to="/Home_page">
               <img src={Back_Arrow}></img>{" "}
@@ -110,9 +110,9 @@ export default function Inbox_Message_page() {
           </div>
 
           <div className="Activity_message">
-          <div className="A_M_2">
-            <Link to="/Inbox">
-              <h4>Activity</h4>
+            <div className="A_M_2">
+              <Link to="/Inbox">
+                <h4>Activity</h4>
               </Link>
             </div>
             <div className="A_M">
@@ -127,7 +127,7 @@ export default function Inbox_Message_page() {
           {tableData.map((data, i) => {
             return (
               <Link to="/Chat">
-                <div className="Inbox_Message_page_2">
+                <div key={i} className="Inbox_Message_page_2">
                   <div className="inbox_today_1">
                     <div className="Inbox_follow_user">
                       <img id="I_b_U_1" src={data.imageofUser}></img>
@@ -149,9 +149,9 @@ export default function Inbox_Message_page() {
         </div>
         <Link to="/New_Message_page">
           <div className="addMessage">
-          {/* <i className="fa-solid fa-envelope" style={{color:"red" , zIndex:"10"}} ></i> */}
-          {/* <i class="fa-light fa-pen-line"></i> */}
-          <CiEdit className="editIcon" />
+            {/* <i className="fa-solid fa-envelope" style={{color:"red" , zIndex:"10"}} ></i> */}
+            {/* <i class="fa-light fa-pen-line"></i> */}
+            <CiEdit className="editIcon" />
             {/* <img src={Edit}></img> */}
           </div>
         </Link>

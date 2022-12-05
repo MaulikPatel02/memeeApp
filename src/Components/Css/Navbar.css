@@ -29,9 +29,7 @@
     text-align: center;
 }
 .home3{
-    position: absolute;
-    right: 44%;
-    bottom: 40%;
+   margin-top: -50px;
 }
 .home3 img{
     height: 50px;

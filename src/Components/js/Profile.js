@@ -245,7 +245,7 @@ export default function Profile() {
             <div className="Posted_profile_by_user">
               {tableData.map((data, i) => {
                 return (
-                  <div className="Posted_profile_by_user1">
+                  <div key={i} className="Posted_profile_by_user1">
                     <Link to="/Post_Img_Page">
                       {" "}
                       <img src={data.post}></img>
@@ -269,7 +269,7 @@ export default function Profile() {
             <div className="Posted_profile_by_user">
               {tableData2.map((data, i) => {
                 return (
-                  <div className="Posted_profile_by_user1">
+                  <div key={i} className="Posted_profile_by_user1">
                     <Link to="/Post_Img_Page">
                       {" "}
                       <img src={data.post}></img>
@@ -316,10 +316,10 @@ export default function Profile() {
           </Link>
         </div> */}
         <Navbar
-        HomeColor={"gray"}
-        ExploreColor={"gray"}
-        TournamentColor={"gray"}
-        ProfileColor={"rgba(255, 205, 47, 1)"}
+          HomeColor={"gray"}
+          ExploreColor={"gray"}
+          TournamentColor={"gray"}
+          ProfileColor={"rgba(255, 205, 47, 1)"}
           HomeImg={HomeOutline}
           ExploreImg={ExploreOutline}
           TournamentImg={TournamentOutline}

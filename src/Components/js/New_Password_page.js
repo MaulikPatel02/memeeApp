@@ -4,7 +4,7 @@ import Back_Arrow from "../images/Back_Arrow.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function New_Password_page() {
   const [passwordShow, setPasswordShow] = useState(false);
@@ -22,7 +22,6 @@ export default function New_Password_page() {
   const [cPassword, setConfirmPassword] = useState("");
   const Navigate = useNavigate();
 
-
   async function NewPassword() {
     console.table(email, password, cPassword);
     const sendData = JSON.stringify({
@@ -33,7 +32,7 @@ export default function New_Password_page() {
 
     var config = {
       method: "post",
-      url:`${process.env.REACT_APP_BASE_URL}/reset-password`,
+      url: `${process.env.REACT_APP_BASE_URL}/reset-password`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -69,7 +68,7 @@ export default function New_Password_page() {
           <div className="ForgotPasswordText">
             <h1>New Password</h1>
           </div>
-       
+
           <div className="form">
             <div class="yourEmail">
               <h5>YOUR EMAIL</h5>
@@ -163,7 +162,7 @@ export default function New_Password_page() {
               )}
             </div>
             <br />
-            <button onClick={NewPassword}  id="Sign_in_button">
+            <button onClick={NewPassword} id="Sign_in_button">
               <span>Reset password</span>
             </button>
           </div>

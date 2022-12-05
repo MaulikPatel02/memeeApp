@@ -24,8 +24,8 @@ export default function Inbox() {
 
           <div className="Activity_message">
             <div className="A_M">
-            <Link to="/Inbox">
-              <h4>Activity</h4>
+              <Link to="/Inbox">
+                <h4>Activity</h4>
               </Link>
             </div>
             <div className="A_M_2">

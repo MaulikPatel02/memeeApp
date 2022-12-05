@@ -8,12 +8,15 @@ export default function Support_page() {
   return (
     <>
       <div className="Support_page">
-       
-          <div className="CommentsArrow">
-          <Link to="/Profile_Setting">  <img src={Back_Arrow}></img></Link> &nbsp;&nbsp;&nbsp;
-            <h3>Support</h3>
-          </div>
-        
+        <div className="CommentsArrow">
+          <Link to="/Profile_Setting">
+            {" "}
+            <img src={Back_Arrow}></img>
+          </Link>{" "}
+          &nbsp;&nbsp;&nbsp;
+          <h3>Support</h3>
+        </div>
+
         <br />
         <div className="support">
           <div className="supp_1">
@@ -39,9 +42,11 @@ export default function Support_page() {
           <h3>Pending</h3>
         </div>
 
-
         <div className="Sup_send_tick">
-        <Link to="/Support_page_2">  <button>Send New Ticket</button></Link>
+          <Link to="/Support_page_2">
+            {" "}
+            <button>Send New Ticket</button>
+          </Link>
         </div>
       </div>
     </>

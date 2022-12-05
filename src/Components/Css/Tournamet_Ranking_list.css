@@ -6,7 +6,7 @@
 }
 
 .ranking_background {
-  background: var(--main_page_background_color);
+  /* background: var(--main_page_background_color); */
    padding: 15px 10px;
    margin-top: 10px;
   }

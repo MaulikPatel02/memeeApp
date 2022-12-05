@@ -200,10 +200,10 @@ export default function Tournamet() {
           </Link>
         </div> */}
         <Navbar
-        HomeColor={"gray"}
-        ExploreColor={"gray"}
-        TournamentColor={"rgba(255, 205, 47, 1)"}
-        ProfileColor={"gray"}
+          HomeColor={"gray"}
+          ExploreColor={"gray"}
+          TournamentColor={"rgba(255, 205, 47, 1)"}
+          ProfileColor={"gray"}
           HomeImg={HomeOutline}
           ExploreImg={ExploreOutline}
           TournamentImg={TournamentFill}

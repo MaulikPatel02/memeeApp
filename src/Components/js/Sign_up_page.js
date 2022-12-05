@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../redux/AuthSlice";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function Sign_up_page() {
   const [passwordShow, setPasswordShow] = useState(false);
@@ -35,7 +35,7 @@ export default function Sign_up_page() {
 
     var config = {
       method: "post",
-      url:`${process.env.REACT_APP_BASE_URL}/signUp`,
+      url: `${process.env.REACT_APP_BASE_URL}/signUp`,
       headers: {
         "Content-Type": "application/json",
       },

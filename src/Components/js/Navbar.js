@@ -43,8 +43,6 @@ import Theme_2_2 from "../images/all_theme_navbar/Theme2/Theme_2_2.png";
 import Theme_2_3 from "../images/all_theme_navbar/Theme2/Theme_2_3.png";
 import Theme_2_4 from "../images/all_theme_navbar/Theme2/Theme_2_4.png";
 import Theme_2_5 from "../images/all_theme_navbar/Theme2/Theme_2_5.png";
-import OutlineHome from "../images/Explore_page/Home.png";
-import OutlineExplor from "../images/Home_page/explore.png";
 
 import { Link } from "react-router-dom";
 
@@ -78,11 +76,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "55px" }} src={m_add}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "55px" }} src={m_add}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -123,11 +123,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={space_add}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={space_add}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -166,11 +168,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={unicorn_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={unicorn_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -209,11 +213,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={memee_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={memee_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -252,11 +258,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={save_E_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={save_E_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -295,11 +303,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={Newyer_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={Newyer_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -338,11 +348,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={theme_1_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={theme_1_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -381,11 +393,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={M_G_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={M_G_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">
@@ -424,11 +438,13 @@ export default function Navbar({
               </div>
             </Link>
           </div>
-          &nbsp;
-          <div className="home3">
-            <img style={{ height: "61px" }} src={Theme_2_3}></img>
-          </div>
-          &nbsp;
+
+          <Link to="/Add_Post_Page">
+            <div className="home3">
+              <img style={{ height: "61px" }} src={Theme_2_3}></img>
+            </div>
+          </Link>
+
           <div>
             <Link to="/Tournamet">
               <div className="home2">

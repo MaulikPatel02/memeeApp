@@ -59,16 +59,16 @@ import theme_1_2 from "../images/all_theme_navbar/Theme1/theme_1_2.png";
 import theme_1_3 from "../images/all_theme_navbar/Theme1/theme_1_3.png";
 import theme_1_4 from "../images/all_theme_navbar/Theme1/theme_1_4.png";
 import theme_1_5 from "../images/all_theme_navbar/Theme1/theme_1_5.png";
-import M_G_1 from '../images/all_theme_navbar/medium_gay_theme/M_G_1.png';
-import M_G_2 from '../images/all_theme_navbar/medium_gay_theme/M_G_2.png';
-import M_G_3 from '../images/all_theme_navbar/medium_gay_theme/M_G_3.png';
-import M_G_4 from '../images/all_theme_navbar/medium_gay_theme/M_G_4.png';
-import M_G_5 from '../images/all_theme_navbar/medium_gay_theme/M_G_5.png';
-import Theme_2_1 from '../images/all_theme_navbar/Theme2/Theme_2_1.png';
-import Theme_2_2 from '../images/all_theme_navbar/Theme2/Theme_2_2.png';
-import Theme_2_3 from '../images/all_theme_navbar/Theme2/Theme_2_3.png';
-import Theme_2_4 from '../images/all_theme_navbar/Theme2/Theme_2_4.png';
-import Theme_2_5 from '../images/all_theme_navbar/Theme2/Theme_2_5.png';
+import M_G_1 from "../images/all_theme_navbar/medium_gay_theme/M_G_1.png";
+import M_G_2 from "../images/all_theme_navbar/medium_gay_theme/M_G_2.png";
+import M_G_3 from "../images/all_theme_navbar/medium_gay_theme/M_G_3.png";
+import M_G_4 from "../images/all_theme_navbar/medium_gay_theme/M_G_4.png";
+import M_G_5 from "../images/all_theme_navbar/medium_gay_theme/M_G_5.png";
+import Theme_2_1 from "../images/all_theme_navbar/Theme2/Theme_2_1.png";
+import Theme_2_2 from "../images/all_theme_navbar/Theme2/Theme_2_2.png";
+import Theme_2_3 from "../images/all_theme_navbar/Theme2/Theme_2_3.png";
+import Theme_2_4 from "../images/all_theme_navbar/Theme2/Theme_2_4.png";
+import Theme_2_5 from "../images/all_theme_navbar/Theme2/Theme_2_5.png";
 import HomeOutline from "../images/Explore_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
 import TournamentFill from "../images/Tournament_page/Tournamet_2.png";
@@ -76,8 +76,6 @@ import ProfileOutline from "../images/Home_page/profile.png";
 
 export default function Tournament_Store_page({ theme, setTheme }) {
   // const [theme, setTheme] = useState("Default_theme_Navbar_color");
-
- 
 
   const Default_ThemechangeMode = () => {
     setTheme("Default_theme_Navbar_color");
@@ -113,7 +111,6 @@ export default function Tournament_Store_page({ theme, setTheme }) {
     setTheme("Theme_1_colors");
     localStorage.setItem("theme", "Theme_1_colors");
   };
-
 
   const medium_gray_ThemechangeMode = () => {
     setTheme("Medium_Gray_colors");
@@ -190,11 +187,13 @@ export default function Tournament_Store_page({ theme, setTheme }) {
                 <img src={Notification}></img>
               </div>
             </Link>
-            <div className="add_coin">
-              <img src={Add}></img>
-              <h3>7412</h3>
-              <img src={Coin}></img>
-            </div>
+            <Link to="/Add_Coins_page">
+                <div className="add_coin">
+                  <img src={Add}></img>
+                  <h3>7412</h3>
+                  <img src={Coin}></img>
+                </div>
+              </Link>
           </div>
         </div>
 
@@ -350,7 +349,7 @@ export default function Tournament_Store_page({ theme, setTheme }) {
             </div>
 
             <br />
-            <div className="unicorn_Theme">
+            <div onClick={unicorn_ThemechangeMode} className="unicorn_Theme">
               <div className="unicorn_1">
                 <h5>Unicorn Theme</h5>
                 <img src={Coin2}></img>
@@ -384,14 +383,14 @@ export default function Tournament_Store_page({ theme, setTheme }) {
             </div>
 
             <br />
-            {/* onClick={memee_ThemechangeMode} */}
-            <div  className="memee_Theme">
+            
+            <div onClick={memee_ThemechangeMode} className="memee_Theme">
               <div className="memee_1">
                 <h5>Memee Theme</h5>
                 <img src={Coin2}></img>
               </div>
 
-              <div  className="memee_2">
+              <div className="memee_2">
                 <div className="memee_m_1">
                   <img src={memee_1}></img>
                   <h6>Home</h6>
@@ -419,13 +418,13 @@ export default function Tournament_Store_page({ theme, setTheme }) {
             </div>
             <br />
 
-            <div className="save_e_Theme">
+            <div onClick={save_e_ThemechangeMode} className="save_e_Theme">
               <div className="save_e_1">
                 <h5>Save Earth Day Theme</h5>
                 <img src={Coin2}></img>
               </div>
 
-              <div  className="save_e_2">
+              <div className="save_e_2">
                 <div className="save_earth_1">
                   <img src={save_E_1}></img>
                   <h6>Home</h6>
@@ -454,13 +453,13 @@ export default function Tournament_Store_page({ theme, setTheme }) {
 
             <br />
 
-            <div className="newyear_Theme">
+            <div onClick={newyear_ThemechangeMode} className="newyear_Theme">
               <div className="newyear_1">
                 <h5>New Year Theme</h5>
                 <img src={Coin2}></img>
               </div>
 
-              <div  className="newyear_2">
+              <div className="newyear_2">
                 <div className="newyear_n_1">
                   <img src={Newyer_1}></img>
                   <h6>Home</h6>
@@ -487,14 +486,14 @@ export default function Tournament_Store_page({ theme, setTheme }) {
               </div>
             </div>
             <br />
-            
-            <div className="newyear_Theme">
+
+            <div onClick={theme_1_ThemechangeMode} className="newyear_Theme">
               <div className="newyear_1">
                 <h5>Theme : 1</h5>
                 <img src={Coin2}></img>
               </div>
 
-              <div onClick={theme_1_ThemechangeMode} className="theme_1">
+              <div  className="theme_1">
                 <div className="newyear_n_1">
                   <img style={{ height: "21px" }} src={theme_1_1}></img>
                   <h6>Home</h6>
@@ -524,8 +523,8 @@ export default function Tournament_Store_page({ theme, setTheme }) {
                 </div>
               </div>
             </div>
-<br/>
-<div className="newyear_Theme">
+            <br />
+            <div className="newyear_Theme">
               <div className="newyear_1">
                 <h5>Theme : 2</h5>
                 <img src={Coin2}></img>
@@ -561,14 +560,17 @@ export default function Tournament_Store_page({ theme, setTheme }) {
                 </div>
               </div>
             </div>
-            <br/>
+            <br />
             <div className="newyear_Theme">
               <div className="newyear_1">
                 <h5>Medium Gray Theme</h5>
                 <img src={Coin2}></img>
               </div>
 
-              <div onClick={medium_gray_ThemechangeMode} className="medium_gray_theme">
+              <div
+                onClick={medium_gray_ThemechangeMode}
+                className="medium_gray_theme"
+              >
                 <div className="newyear_n_1">
                   <img style={{ height: "24px" }} src={M_G_1}></img>
                   <h6>Home</h6>
@@ -598,12 +600,6 @@ export default function Tournament_Store_page({ theme, setTheme }) {
                 </div>
               </div>
             </div>
-           
-
-          
-
-
-
           </div>
         )}
 
@@ -1024,10 +1020,10 @@ export default function Tournament_Store_page({ theme, setTheme }) {
 
         {/* <Navbar spaceThemeNav={Space_ThemechangeMode} defaultThemeNav={Default_ThemechangeMode} unicorntheme={unicorn_ThemechangeMode}/> */}
         <Navbar
-        HomeColor={"gray"}
-        ExploreColor={"gray"}
-        TournamentColor={"rgba(255, 205, 47, 1)"}
-        ProfileColor={"gray"}
+          HomeColor={"gray"}
+          ExploreColor={"gray"}
+          TournamentColor={"rgba(255, 205, 47, 1)"}
+          ProfileColor={"gray"}
           HomeImg={HomeOutline}
           ExploreImg={ExploreOutline}
           TournamentImg={TournamentFill}

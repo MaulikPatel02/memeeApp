@@ -35,7 +35,7 @@
 .Search_explore svg{
     position: relative;
     top: 32px;
-    left: 4.5%;
+    left: 13px;
     fill: var(--search_explore_svg_color);
 }
 .Explore_tags h2{
@@ -43,12 +43,12 @@
     font-size: 14px;
     font-weight: 400;
     margin: 0;
-    margin-left: 6%;
-    margin-top: 4%;
+    margin-left: 25px;
+    margin-top: 20px;
 }
 .Explore_tags_items{
     margin-top: 3%;
-   padding-left: 6%;
+   padding-left: 25px;
     display: flex;
     width: 100%;
     overflow: auto;
@@ -62,7 +62,7 @@
     /* background:  linear-gradient(180deg, #FFE299 0%, #F6B202 100%); */
     border-style: none;
     border-radius: 20px;
-    margin-right: 2%;
+    margin-right:10px;
 }
 .Explore_tags_items_1 h4{
     margin: 0;
@@ -75,7 +75,7 @@
     border: 1px solid;
     border-color: var( --explore_tag_items_border_color);
     border-radius: 20px;
-    margin-right: 2%;
+    margin-right: 10px;
 }
 .Explore_tags_items_2 h4{
     margin: 0;
@@ -125,7 +125,7 @@
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: space-around;
-    margin-top: 25px;
+    margin-top: 13px;
     padding: 0 15px;
     width: 100%;
     margin-bottom: 86px;

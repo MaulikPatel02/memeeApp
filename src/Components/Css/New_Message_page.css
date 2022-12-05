@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     background: var( --Search_explore_input_color);
-    padding: 10px ;
+    padding: 6px ;
     border-radius: 24px;
     padding-left: 25px;
     margin: 0 15px;

@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import "../Css/Verify_Email_page.css";
 import Back_Arrow from "../images/Back_Arrow.png";
-import { Link, useNavigate , useLocation} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { toast } from 'react-toastify';
-
+import { toast } from "react-toastify";
 
 export default function Verify_Email_page() {
   const [OTP_Obj, setOTP_Obj] = useState({
@@ -16,9 +15,7 @@ export default function Verify_Email_page() {
   const location = useLocation();
   const Navigate = useNavigate();
   console.log(OTP_Obj.first, OTP_Obj.second, OTP_Obj.third, OTP_Obj.fourth);
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   let digitValidate = function (ele) {
     console.log(ele.value);
@@ -35,19 +32,18 @@ export default function Verify_Email_page() {
     }
   };
 
- const verifyOtp=()=> {
- 
-    const Otpuser = OTP_Obj.first + OTP_Obj.second + OTP_Obj.third + OTP_Obj.fourth
+  const verifyOtp = () => {
+    const Otpuser =
+      OTP_Obj.first + OTP_Obj.second + OTP_Obj.third + OTP_Obj.fourth;
     const dataBaseOtp = location.state.dataOtp;
 
-        if(Number(dataBaseOtp) === Number(Otpuser)) {
-          toast.success("Otp Verify Successfully")
-        Navigate("/New_Password_page");
-      }else{
-        toast.error("Invalid Otp")
-
-      }
-  }
+    if (Number(dataBaseOtp) === Number(Otpuser)) {
+      toast.success("Otp Verify Successfully");
+      Navigate("/New_Password_page");
+    } else {
+      toast.error("Invalid Otp");
+    }
+  };
 
   return (
     <>
@@ -70,7 +66,9 @@ export default function Verify_Email_page() {
               <input
                 type="text"
                 value={OTP_Obj.first}
-                onChange={(e) => setOTP_Obj({...OTP_Obj,first:e.target.value})}
+                onChange={(e) =>
+                  setOTP_Obj({ ...OTP_Obj, first: e.target.value })
+                }
                 onInput={() => digitValidate(this)}
                 onKeyUp={() => tabChange(1)}
                 maxLength="1"
@@ -78,7 +76,9 @@ export default function Verify_Email_page() {
               <input
                 type="text"
                 value={OTP_Obj.second}
-                onChange={(e) => setOTP_Obj({...OTP_Obj,second:e.target.value})}
+                onChange={(e) =>
+                  setOTP_Obj({ ...OTP_Obj, second: e.target.value })
+                }
                 onInput={() => digitValidate(this)}
                 onKeyUp={() => tabChange(2)}
                 maxLength="1"
@@ -86,7 +86,9 @@ export default function Verify_Email_page() {
               <input
                 type="text"
                 value={OTP_Obj.third}
-                onChange={(e) => setOTP_Obj({...OTP_Obj,third:e.target.value})}
+                onChange={(e) =>
+                  setOTP_Obj({ ...OTP_Obj, third: e.target.value })
+                }
                 onInput={() => digitValidate(this)}
                 onKeyUp={() => tabChange(3)}
                 maxLength="1"
@@ -94,7 +96,9 @@ export default function Verify_Email_page() {
               <input
                 type="text"
                 value={OTP_Obj.fourth}
-                onChange={(e) => setOTP_Obj({...OTP_Obj,fourth:e.target.value})}
+                onChange={(e) =>
+                  setOTP_Obj({ ...OTP_Obj, fourth: e.target.value })
+                }
                 onInput={() => digitValidate(this)}
                 onKeyUp={() => tabChange(4)}
                 maxLength="1"

@@ -6,7 +6,9 @@
 }
 #E_1{
     height: 154px;
+    width:154px ;
     border-radius: 50%;
+    border:3px solid white
 }
 .E{
     text-align: center;

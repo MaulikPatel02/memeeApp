@@ -50,6 +50,8 @@ import Memee_user_story from "./Components/js/Memee_user_story";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Add_Post_Page from "./Components/js/Add_Post_Page";
+import New_Trending_Memes_Page from "./Components/js/New_Trending_Memes_Page";
 // import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -83,7 +85,7 @@ function App() {
     setTimeout(() => {
       setShowSlider(false);
       setDisableCmp(true);
-    }, 5000);
+    }, 500);
   }, []);
 
   return (
@@ -206,6 +208,8 @@ function App() {
               />
 
               <Route path="Memee_user_story" element={<Memee_user_story />} />
+              <Route path="Add_Post_Page" element={<Add_Post_Page />} />
+              <Route path="New_Trending_Memes_Page" element={<New_Trending_Memes_Page />} />
             </Routes>
           </div>
         )}

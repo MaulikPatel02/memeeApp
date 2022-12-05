@@ -248,6 +248,7 @@ export default function Expolor_page(props) {
               return (
                 <Link to="/Explore_More_page">
                   <div
+                    key={i}
                     style={{ backgroundImage: `url(${data.Explore_post_bg})` }}
                     className="user_post_explore_1"
                   >
@@ -301,10 +302,10 @@ export default function Expolor_page(props) {
                 </div></Link>
         </div> */}
         <Navbar
-        HomeColor={"gray"}
-        ExploreColor={"rgba(255, 205, 47, 1)"}
-        TournamentColor={"gray"}
-        ProfileColor={"gray"}
+          HomeColor={"gray"}
+          ExploreColor={"rgba(255, 205, 47, 1)"}
+          TournamentColor={"gray"}
+          ProfileColor={"gray"}
           HomeImg={HomeOutline}
           ExploreImg={ExploreFill}
           TournamentImg={TournamentOutline}

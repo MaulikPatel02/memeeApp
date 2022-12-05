@@ -144,7 +144,6 @@ export default function Faq_page() {
           )}
         </div>
 
-
         <div className={`allfaqs ${hide5 ? "allfaqs2" : ""}`}>
           <div className="buyCoins">
             <h1>How I can enter in tournament and what is criteria?</h1>
