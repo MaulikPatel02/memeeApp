@@ -1,21 +1,32 @@
 import React from "react";
+// import FacebookLogin from 'react-facebook-login';
 import "../Css/On_bording_page.css";
 import logo from "../images/logo.png";
 import twitter from "../images/twitter.png";
 import Google from "../images/Google.png";
 import facebook from "../images/facebook.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import { useEffect } from "react";
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
 
 export default function On_bording_page() {
-  const Navigate = useNavigate();
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     Navigate("/Home_page");
-  //   } else {
-  //     Navigate("/");
-  //   }
-  // }, []);
+
+  // const Navigator=Navigate("/Home_page")
+ const clientId="440712046489-6bchqhu6b3ptabq0mii3qh67ih3tlvh8.apps.googleusercontent.com"
+  useEffect(()=>{
+    window.gapi.load('client:auth2', () => {
+      window.gapi.client.init({
+        clientId: clientId,
+          plugin_name: "chat"
+      })
+})
+  },[])
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
+
+
 
   return (
     <>
@@ -26,18 +37,30 @@ export default function On_bording_page() {
 
         <div className="linkemail">
           <Link to="/Sign_in_page">
-            {" "}
             <div className="email">
-              {/* <img src={email}></img> */}
               <i id="emailofonbording" className="fa-solid fa-envelope"></i>
-              {/* <i class="fa fa-mail"></i> */}
               <h4>Continue with Email</h4>
             </div>
           </Link>
 
-          <div className="email2">
+          <div className="email2" id="googleBUtton">
             <img src={Google}></img>
-            <h4>Continue with Google</h4>
+            <GoogleLogin
+            clientId={clientId}
+              render={(renderProps) => (
+                <h4
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Continue with Google
+                </h4>
+              )}
+              buttonText=""
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+            ,
           </div>
 
           <div className="email2">
@@ -54,13 +77,12 @@ export default function On_bording_page() {
             <h4>
               New to memee?
               <span>
-                {" "}
                 <Link to="/Sign_up_page"> Sign up </Link>
               </span>
             </h4>
             <p>
               By continuing you agree Memee’s Terms of Services
-              <br /> & Privacy Policy.{" "}
+              <br /> & Privacy Policy.
             </p>
           </div>
         </div>

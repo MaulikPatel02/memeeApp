@@ -58,7 +58,7 @@ export default function New_Trending_Memes_Page() {
             <h3>New Memes</h3>
           </div>
         </div>
-        <video src={video1} autoplay="true" />
+        <video onDoubleClick={imagePostLikeHandler} src={video1} autoPlay="true" />
         <div className="absolutelikesharecmt">
           <div className="likesharecomment">
             <div className="post_like">

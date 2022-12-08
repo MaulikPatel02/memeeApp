@@ -94,3 +94,14 @@
     font-size: 12px;
     margin: 0;
 }
+
+.googleloginbtn{
+    width: 90%;
+    border-radius: 50px;
+    background-color: red;
+    position: absolute;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    opacity: 0;
+}
