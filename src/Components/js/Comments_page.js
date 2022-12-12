@@ -15,7 +15,7 @@ export default function Comments_page() {
  
 
   useEffect(() => {
-    getApi();
+    // getApi();
   }, []);
 
   // comments Api
@@ -59,24 +59,24 @@ export default function Comments_page() {
 
   // Comments get Api
 
-  const getApi = () => {
-    var requestOptions = {
-      method: "GET",
-    };
+  // const getApi = () => {
+  //   var requestOptions = {
+  //     method: "GET",
+  //   };
 
-    fetch(
-      `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/638d717385673fc1887bcfe5`,
-      requestOptions
-    )
-      .then(function (response) {
-        setTableData(response.data);
-        console.log(JSON.stringify(response.data));
-        console.log("response", response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  //   fetch(
+  //     `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/638d717385673fc1887bcfe5`,
+  //     requestOptions
+  //   )
+  //     .then(function (response) {
+  //       setTableData(response.data);
+  //       console.log(JSON.stringify(response.data));
+  //       console.log("response", response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   
 

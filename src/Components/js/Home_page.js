@@ -295,10 +295,10 @@ export default function Home_page() {
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
                       <Link to="/Other_person_profile_page">
-                        <img src={item.profile}></img>
+                        <img src={process.env.REACT_APP_2_BASE_URL + "/" + item.userProfile}></img>
                       </Link>
                       <div className="post_username_details">
-                        <h5>{item.user_post_name}</h5>
+                        <h5>{item.username}</h5>
                         <h6>{item.location}</h6>
                       </div>
                     </div>
@@ -311,10 +311,7 @@ export default function Home_page() {
                   </div>
                   <div className="user_posted_media">
                     <div className="POsed_media_By_user">
-                      {console.log(
-                        "profile",
-                        process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
-                      )}
+                      
                       <img
                         onDoubleClick={imagePostLikeHandler}
                         src={
@@ -332,7 +329,7 @@ export default function Home_page() {
                         ) : (
                           <img onClick={likeImage2} src={Heart}></img>
                         )}
-                        <h5>{item.like}</h5>
+                        <h5>{item.like}k</h5>
                       </div>
                       <Link to="/Comments_page">
                         <div className="post_like">
@@ -365,7 +362,7 @@ export default function Home_page() {
                           />
                         </svg>
 
-                        <h5>{item.share}</h5>
+                        <h5>{item.share}10</h5>
                       </div>
                     </div>
                   </div>
