@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Css/Add_Post_Page.css";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Back_Arrow from "../images/Back_Arrow.png";
 import upload from "../images/Post_Images/upload.png";
 import { toast } from "react-toastify";
@@ -25,7 +25,7 @@ export default function Add_Post_Page() {
     formdata.append("location", location);
     formdata.append("hashTag", hashTag);
     formdata.append("profile", profile);
-    console.log("profile",profile)
+    console.log("profile", profile);
 
     var requestOptions = {
       method: "POST",
@@ -38,21 +38,22 @@ export default function Add_Post_Page() {
       `${process.env.REACT_APP_2_BASE_URL}/userpost/638d6e3231ceee4e3ba8f9c3`,
       requestOptions
     )
-    .then(function (response) {
-      console.log(response.data);
-      if (response.data.status == 200) {
-        toast.success("Succesfully Upload Post");
-        Navigate("/Home_page");
-      } else {
-        toast.error("Try Again Post Not Uploded");
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.status == 200) {
+          toast.success("Succesfully Upload Post");
+          Navigate("/Home_page");
+        } else {
+          toast.error("Try Again Post Not Uploded");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleImageUpload = (e) => {
+    setProfile(e.target.files[0]);
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
@@ -81,7 +82,6 @@ export default function Add_Post_Page() {
             <img
               src={upload}
               value={profile}
-              onChange={(e) => setProfile(e.target.files[0])}
               onClick={() => imageUploader.current.click()}
               ref={uploadedImage}
             />
@@ -94,6 +94,8 @@ export default function Add_Post_Page() {
             onChange={handleImageUpload}
             ref={imageUploader}
           ></input>
+
+          
         </div>
 
         <div className="post_details">
