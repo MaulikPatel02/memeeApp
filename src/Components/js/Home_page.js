@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Css/Home_page.css";
 import Profile_image from "../images/Home_page/Profile_image.png";
 import Notification from "../images/Home_page/Notification.png";
@@ -12,10 +12,10 @@ import Story_1 from "../images/Home_page/Story_1.png";
 import Story_2 from "../images/Home_page/Story_2.png";
 import User_post_img from "../images/Home_page/User_post_img.png";
 import three_dot from "../images/Home_page/three_dot.png";
-import post from "../images/Home_page/post.png";
+import post_pic from "../images/Home_page/post.png";
 import Like from "../images/Home_page/Like.png";
 import User_post2_img from "../images/Home_page/post_2.png";
-import { Link,useLocation  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import HomeFill from "../images/Home_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
@@ -40,6 +40,36 @@ export default function Home_page() {
 
   const [following, setFollowing] = useState(true);
 
+  //  post get Api
+
+  const [userData, setUserData] = useState([]);
+
+  var token = localStorage.getItem("token");
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  const postList = async () => {
+    const fetchData = await fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/getPostDataAll`,
+      requestOptions
+    );
+    const resData = await fetchData.json();
+    setUserData(resData.postData);
+  };
+
+  useEffect(() => {
+    postList();
+  }, []);
+
+  // end post get api
+
   const followingHandler = () => {
     setFollowing(true);
     setTrending(false);
@@ -59,52 +89,6 @@ export default function Home_page() {
     setTrending(false);
     setNewMemes(true);
   };
-
-  // const[username,setUserName]=useState()
-  // const[caption,setCaption]=useState()
-  // const[likePost,setLikePost]=useState()
-  // const[lcomments,setComments]=useState()
-  // const[share,setShare]=useState()
-  // const[profile,setProfile]=useState()
-  // const[location,setLocation]=useState()
-  // const[hashTag,setHashTag]=useState()
-  // const[profilePic,setProfilePic]=useState()
-
-  // post of user api
-
-  // var axios = require('axios');
-  // var FormData = require('form-data');
-  // var data = new FormData();
-  // data.append('username', username);
-  // data.append('caption', caption);
-  // data.append('like',likePost);
-  // data.append('comment',lcomments);
-  // data.append('share', share);
-  // data.append('profile',profile);
-  // data.append('location', location);
-  // data.append('hashTag',hashTag);
-  // // data.append('userId',);
-  // data.append('profilePic',profilePic);
-  // var token=localStorage.getItem("token")
-  // var config = {
-  //   method: 'post',
-  //   url: `${process.env.REACT_APP_BASE_URL}/user-post/63844cd1d3b90a46b1ad9798`,
-
-  //   headers: {
-  //     'Authorization': `Bearer ${token}`,
-  // ...data.getHeaders()
-  //   },
-  //   data : data
-  // };
-  // axios(config)
-  // .then(function (response) {
-  //   console.log(JSON.stringify(response.data));
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-
-  //  end post of user api
 
   const openSlider = () => {
     setOpen(!open);
@@ -211,63 +195,6 @@ export default function Home_page() {
     },
   ];
 
-  const tableData2 = [
-    {
-      id: 1,
-      user_post_image: User_post_img,
-      user_post_name: "Jullian Fortan",
-      post_location: "Madrid, Spain",
-      post_content: "New Popular meme",
-      post_tag: "#memes #bestmeme #funnymemes #dankmemes",
-      post_image: post,
-    },
-    {
-      id: 2,
-      user_post_image: User_post2_img,
-      user_post_name: "Tyler Mady",
-      post_location: "Madrid, Spain",
-      post_content: "New Popular meme",
-      post_tag: "#memes #bestmeme #funnymemes #dankmemes",
-      post_image: post,
-    },
-    {
-      id: 3,
-      user_post_image: User_post_img,
-      user_post_name: "Jullian Fortan",
-      post_location: "Madrid, Spain",
-      post_content: "New Popular meme",
-      post_tag: "#memes #bestmeme #funnymemes #dankmemes",
-      post_image: post,
-    },
-    {
-      id: 4,
-      user_post_image: User_post2_img,
-      user_post_name: "Tyler Mady",
-      post_location: "Madrid, Spain",
-      post_content: "New Popular meme",
-      post_tag: "#memes #bestmeme #funnymemes #dankmemes",
-      post_image: post,
-    },
-    {
-      id: 5,
-      user_post_image: User_post_img,
-      user_post_name: "Jullian Fortan",
-      post_location: "Madrid, Spain",
-      post_content: "New Popular meme",
-      post_tag: "#memes #bestmeme #funnymemes #dankmemes",
-      post_image: post,
-    },
-    {
-      id: 6,
-      user_post_image: User_post2_img,
-      user_post_name: "Tyler Mady",
-      post_location: "Madrid, Spain",
-      post_content: "New Popular meme",
-      post_tag: "#memes #bestmeme #funnymemes #dankmemes",
-      post_image: post,
-    },
-  ];
-
   return (
     <>
       <div className="mainclassofapp">
@@ -360,35 +287,43 @@ export default function Home_page() {
             })}
           </div>
 
+
           <div>
-            {tableData2.map((data, i) => {
+            {userData.map((item, i) => {
               return (
                 <div key={i} className="Home_page_post">
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
                       <Link to="/Other_person_profile_page">
-                        <img src={data.user_post_image}></img>
+                        <img src={item.profile}></img>
                       </Link>
                       <div className="post_username_details">
-                        <h5>{data.user_post_name}</h5>
-                        <h6>{data.post_location}</h6>
+                        <h5>{item.user_post_name}</h5>
+                        <h6>{item.location}</h6>
                       </div>
                     </div>
                     <img id="threeeDot_post" src={three_dot}></img>
                   </div>
 
                   <div className="Post_tag_details">
-                    <h6>{data.post_content}</h6>
-                    <p>{data.post_tag}</p>
+                    <h6>{item.caption}</h6>
+                    <p>{item.hashTag}</p>
                   </div>
                   <div className="user_posted_media">
                     <div className="POsed_media_By_user">
+                      {console.log(
+                        "profile",
+                        process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
+                      )}
                       <img
-                        key={i}
                         onDoubleClick={imagePostLikeHandler}
-                        src={data.post_image}
+                        src={
+                          process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
+                        }
+                        // src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
                       ></img>
                     </div>
+
 
                     <div className="likesharecomment">
                       <div className="post_like">
@@ -397,11 +332,10 @@ export default function Home_page() {
                         ) : (
                           <img onClick={likeImage2} src={Heart}></img>
                         )}
-                        <h5>{count}k</h5>
+                        <h5>{item.like}</h5>
                       </div>
                       <Link to="/Comments_page">
                         <div className="post_like">
-                          {/* <img src={comments}></img> */}
                           <svg
                             width="20"
                             height="21"
@@ -414,12 +348,10 @@ export default function Home_page() {
                               fill="white"
                             />
                           </svg>
-
                           <h5>175</h5>
                         </div>{" "}
                       </Link>
                       <div onClick={openSlider} className="post_like">
-                        {/* <img src={share}></img> */}
                         <svg
                           width="20"
                           height="20"
@@ -433,7 +365,7 @@ export default function Home_page() {
                           />
                         </svg>
 
-                        <h5>20</h5>
+                        <h5>{item.share}</h5>
                       </div>
                     </div>
                   </div>

@@ -10,19 +10,12 @@ import { Link } from "react-router-dom";
 export default function Comments_page() {
   const [inputList, setInputList] = useState("");
   const [Item, setItem] = useState([]);
-  // const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([]);
 
-  const tableData = [
-    {
-      id: 1,
-      Comments_user_img: Comments_user_1,
-      Comments_user_name: "Jullian Fortan",
-      Comments_minuts: "18m",
-    },
-  ];
+ 
 
   useEffect(() => {
-    // getApi();
+    getApi();
     console.log("tabledata", tableData);
   }, []);
 
@@ -65,24 +58,24 @@ export default function Comments_page() {
 
   // Comments get Api
 
-  // const getApi = () => {
-  //   var requestOptions = {
-  //     method: "GET",
-  //   };
+  const getApi = () => {
+    var requestOptions = {
+      method: "GET",
+    };
 
-  //   fetch(
-  //     `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/638d717385673fc1887bcfe5`,
-  //     requestOptions
-  //   )
-  //     .then(function (response) {
-  //       setTableData(response.data);
-  //       console.log(JSON.stringify(response.data));
-  //       console.log("response", response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
+    fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/638d717385673fc1887bcfe5`,
+      requestOptions
+    )
+      .then(function (response) {
+        setTableData(response.data);
+        console.log(JSON.stringify(response.data));
+        console.log("response", response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   
 

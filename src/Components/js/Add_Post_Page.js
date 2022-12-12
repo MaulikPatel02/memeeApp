@@ -1,17 +1,56 @@
 import React, { useState } from "react";
 import "../Css/Add_Post_Page.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import Back_Arrow from "../images/Back_Arrow.png";
 import upload from "../images/Post_Images/upload.png";
+import { toast } from "react-toastify";
 
 export default function Add_Post_Page() {
+  const Navigate = useNavigate();
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState({});
 
-  const[location,setLocation]=useState();
-  const[hashTag,setHashTag]=useState();
-  const[caption,setCaption]=useState()
+  const [location, setLocation] = useState("");
+  const [hashTag, setHashTag] = useState("");
+  const [caption, setCaption] = useState("");
+
+  const submitHandler = () => {
+    var myHeaders = new Headers();
+    var token = localStorage.getItem("token");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var formdata = new FormData();
+    formdata.append("caption", caption);
+    formdata.append("location", location);
+    formdata.append("hashTag", hashTag);
+    formdata.append("profile", profile);
+    console.log("profile",profile)
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/638d6e3231ceee4e3ba8f9c3`,
+      requestOptions
+    )
+    .then(function (response) {
+      console.log(response.data);
+      if (response.data.status == 200) {
+        toast.success("Succesfully Upload Post");
+        Navigate("/Home_page");
+      } else {
+        toast.error("Try Again Post Not Uploded");
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
 
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
@@ -60,23 +99,38 @@ export default function Add_Post_Page() {
         <div className="post_details">
           <div className="locationinput">
             <label>Location :</label>
-            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Enter Location" />
+            <input
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder="Enter Location"
+            />
           </div>
 
           <div className="locationinput">
             <label>Caption :</label>
-            <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="Enter Caption" />
+            <input
+              type="text"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              placeholder="Enter Caption"
+            />
           </div>
 
           <div className="locationinput">
             <label>HashTag:</label>
-            <input type="text" value={hashTag} onChange={(e) => setHashTag(e.target.value)} placeholder="Enter HashTag" />
+            <input
+              type="text"
+              value={hashTag}
+              onChange={(e) => setHashTag(e.target.value)}
+              placeholder="Enter HashTag"
+            />
           </div>
 
           <div className="postbutton">
-            <Link to="/Home_page">
-              <div className="post__yellow_btn">Post</div>
-            </Link>
+            <div onClick={submitHandler} className="post__yellow_btn">
+              Post
+            </div>
           </div>
         </div>
       </div>

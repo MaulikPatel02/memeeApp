@@ -24,7 +24,7 @@ export default function Sign_up_page() {
   // const [error, setError] = useState("");
   const Navigate = useNavigate();
 
-  const dispatch = useDispatch();
+
   async function signUp() {
     console.table(email, password, cPassword);
     const sendData = JSON.stringify({
