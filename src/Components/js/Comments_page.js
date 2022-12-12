@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../Css/Comments_page.css";
 import Back_Arrow from "../images/Back_Arrow.png";
-import Comments_user_1 from "../images/comments_page/Comments_user_1.png";
-import Comments_user_2 from "../images/comments_page/Comments_user_2.png";
-import Comments_user_3 from "../images/comments_page/Comments_user_3.png";
+// import Comments_user_1 from "../images/comments_page/Comments_user_1.png";
+// import Comments_user_2 from "../images/comments_page/Comments_user_2.png";
+// import Comments_user_3 from "../images/comments_page/Comments_user_3.png";
 import User_written_comments from "../images/comments_page/User_written_comments.png";
 import { Link } from "react-router-dom";
 
@@ -16,10 +16,11 @@ export default function Comments_page() {
 
   useEffect(() => {
     getApi();
-    console.log("tabledata", tableData);
   }, []);
 
   // comments Api
+
+  
   var myHeaders = new Headers();
   var token = localStorage.getItem("token");
   myHeaders.append("Authorization", `Bearer ${token}`);

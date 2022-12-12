@@ -28,44 +28,44 @@ export default function Add_Coins_page() {
         <br />
         <div className="addposterofcoin">
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
           <Link to="/Payment_Method_page">
-            {" "}
-            <img src={Add_Coin_poster}></img>{" "}
+            
+            <img src={Add_Coin_poster}></img>
           </Link>
         </div>
 
