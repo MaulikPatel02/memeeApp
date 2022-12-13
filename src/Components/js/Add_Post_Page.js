@@ -90,7 +90,6 @@ export default function Add_Post_Page() {
           <input
             id="fileupload2"
             type="file"
-            accept="/images/*"
             onChange={handleImageUpload}
             ref={imageUploader}
           ></input>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import move from "../images/Settings_page/move.png";
 
 export default function Profile_Setting() {
+  const userName=JSON.parse(localStorage.getItem('userdata')).name
   return (
     <>
       <div className="Profile_Setting">
@@ -37,7 +38,7 @@ export default function Profile_Setting() {
               </div>
               <div className="P_Setting_1_2">
                 <h5>Account Details</h5>
-                <h6>John Smith</h6>
+                <h6>{userName}</h6>
               </div>
             </div>
             <div className="P_Setting_2">

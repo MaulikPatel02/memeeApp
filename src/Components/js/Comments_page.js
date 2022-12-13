@@ -9,76 +9,74 @@ import { Link } from "react-router-dom";
 
 export default function Comments_page() {
   const [inputList, setInputList] = useState("");
-  const [Item, setItem] = useState([]);
-  const [tableData, setTableData] = useState([]);
-
- 
-
-  useEffect(() => {
-    // getApi();
-  }, []);
+  const [userData, setUserData] = useState([]);
+  
 
   // comments Api
 
-  
-  var myHeaders = new Headers();
-  var token = localStorage.getItem("token");
-  myHeaders.append("Authorization", `Bearer ${token}`);
-  var FormData = require("form-data");
-  var data = new FormData();
 
-  data.append("comment", inputList);
-
-  var requestOptions = {
-    method: "POST",
-    body: data,
-    headers: myHeaders,
-    redirect: "follow",
-  };
-
-  fetch(
-    `${process.env.REACT_APP_BASE_URL}/userpost/63871b8cd4798007dbfddac9`,
-    requestOptions
-  )
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 
   const itemEvent = (event) => {
     setInputList(event.target.value);
   };
   const listOfItem = () => {
-    setItem((oldItems) => {
-      return [...oldItems, inputList];
-    });
-    setInputList("");
+    // setItem((oldItems) => {
+    //   return [...oldItems, inputList];
+    // });
+    // setInputList("");
+    var myHeaders = new Headers();
+    var token = localStorage.getItem("token");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    var FormData = require("form-data");
+    var data = new FormData();
+  
+    data.append("comment", inputList);
+  
+    var requestOptions = {
+      method: "POST",
+      body: data,
+      headers: myHeaders,
+      redirect: "follow",
+    };
+  
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}/userpost/63871b8cd4798007dbfddac9`,
+      requestOptions
+    )
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   // Comments get Api
 
-  // const getApi = () => {
+
+
+  // const commentsList = async () => {
+  //   var token = localStorage.getItem("token");
+
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Authorization", `Bearer ${token}`);
+
   //   var requestOptions = {
   //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
   //   };
-
-  //   fetch(
-  //     `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/638d717385673fc1887bcfe5`,
+  //   const fetchData = await fetch(
+  //     `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/63970a92342696e1001e2c3d`,
   //     requestOptions
-  //   )
-  //     .then(function (response) {
-  //       setTableData(response.data);
-  //       console.log(JSON.stringify(response.data));
-  //       console.log("response", response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
+  //   );
+  //   const resData = await fetchData.json();
+  //   setUserData(resData.postData);
   // };
 
-  
+  // useEffect(() => {
+  //   commentsList();
+  // }, []);
 
   return (
     <>
@@ -93,29 +91,29 @@ export default function Comments_page() {
           </div>
 
           <div className="comments">
-            {tableData.map((data, i) => {
+            {userData.map((itemVal, index) => {
               return (
-                <div>
-                  {Item.map((itemVal, index) => {
-                    return (
-                      <div key={index} className="User_comments">
-                        <div className="cmd_User_img">
-                          <img src={data.Comments_user_img}></img>
-                        </div>
-                        <div className="comments_description">
-                          <div className="c_d_1">
-                            <h5>{data.Comments_user_name}</h5>
-                            <h6>{itemVal}</h6>
-                          </div>
-                          <div className="Comments_likes_share">
-                            <h5>{data.Comments_minuts}</h5>
-                            <h5>Like</h5>
-                            <h5>Reply</h5>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div key={index} className="User_comments">
+                  <div className="cmd_User_img">
+                    <img
+                      src={
+                        process.env.REACT_APP_2_BASE_URL +
+                        "/" +
+                        itemVal.userProfile
+                      }
+                    ></img>
+                  </div>
+                  <div className="comments_description">
+                    <div className="c_d_1">
+                      <h5>{itemVal.username}</h5>
+                      <h6>{itemVal.comment}</h6>
+                    </div>
+                    <div className="Comments_likes_share">
+                      <h5>{itemVal.Comments_minuts}</h5>
+                      <h5>Like</h5>
+                      <h5>Reply</h5>
+                    </div>
+                  </div>
                 </div>
               );
             })}

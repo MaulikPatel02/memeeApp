@@ -20,6 +20,9 @@ import TournamentOutline from "../images/Home_page/tournament.png";
 import ProfileFill from "../images/Profile_page/Profile2.png";
 
 export default function Profile() {
+
+  const userName=JSON.parse(localStorage.getItem('userdata')).name
+
   const tableData = [
     {
       id: 1,
@@ -158,7 +161,7 @@ export default function Profile() {
 
             <div className="profile_1_user">
               <img src={Profile_user_img}></img>
-              <h1>Mr Astronut</h1>
+              <h1>{userName}</h1>
 
               <div className="Profile_following">
                 <div className="P_f_1">

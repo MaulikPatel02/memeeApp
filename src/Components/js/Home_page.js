@@ -15,7 +15,7 @@ import three_dot from "../images/Home_page/three_dot.png";
 import post_pic from "../images/Home_page/post.png";
 import Like from "../images/Home_page/Like.png";
 import User_post2_img from "../images/Home_page/post_2.png";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import HomeFill from "../images/Home_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
@@ -34,28 +34,36 @@ import S_9 from "../images/Share_Post_Social_Icon/S_9.png";
 import S_10 from "../images/Share_Post_Social_Icon/S_10.png";
 
 export default function Home_page() {
+
+  const types = new Map([["jpg", "img"], ["gif", "img"], ["mp4", "video"], ["3gp", "video"]])
+
+
+
+
+
   const [like, setLike] = useState(false);
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(65);
 
   const [following, setFollowing] = useState(true);
 
+  const userName = JSON.parse(localStorage.getItem("userdata")).name;
+
   //  post get Api
 
   const [userData, setUserData] = useState([]);
 
-  var token = localStorage.getItem("token");
-
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${token}`);
-
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
-
   const postList = async () => {
+    var token = localStorage.getItem("token");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
     const fetchData = await fetch(
       `${process.env.REACT_APP_2_BASE_URL}/userpost/getPostDataAll`,
       requestOptions
@@ -206,7 +214,7 @@ export default function Home_page() {
               </div>
               <div className="user_name">
                 <h2>
-                  Hi <span>Astronut,</span>
+                  Hi <span>{userName}</span>
                 </h2>
               </div>
             </div>
@@ -287,7 +295,6 @@ export default function Home_page() {
             })}
           </div>
 
-
           <div>
             {userData.map((item, i) => {
               return (
@@ -295,7 +302,14 @@ export default function Home_page() {
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
                       <Link to="/Other_person_profile_page">
-                        <img id="postuserprofilepic" src={process.env.REACT_APP_2_BASE_URL + "/" + item.userProfile}></img>
+                        <img
+                          id="postuserprofilepic"
+                          src={
+                            process.env.REACT_APP_2_BASE_URL +
+                            "/" +
+                            item.userProfile
+                          }
+                        ></img>
                       </Link>
                       <div className="post_username_details">
                         <h5>{item.username}</h5>
@@ -311,16 +325,51 @@ export default function Home_page() {
                   </div>
                   <div className="user_posted_media">
                     <div className="POsed_media_By_user">
-                      
-                      <img
-                        onDoubleClick={imagePostLikeHandler}
-                        src={
-                          process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
-                        }
-                        // src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
-                      ></img>
-                    </div>
+                    
 
+
+
+
+
+
+
+
+
+
+                    {/* {
+                  
+                   types.get( new URL(process.env.REACT_APP_2_BASE_URL + "/" + item.userPost).pathname.split(".")[1]) == "video" ? */}
+                     
+                   {/* <video
+                   autoPlay={true}
+                   src={
+                     process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
+                   }
+                   type="video/mp4"
+                 /> */}
+                 {/* : */}
+                 <img
+                 onDoubleClick={imagePostLikeHandler}
+                 src={
+                   process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
+                 }
+               ></img>
+                       
+                    {/* } */}
+                    
+
+                     
+
+                    
+
+
+
+
+
+
+
+
+                    </div>
 
                     <div className="likesharecomment">
                       <div className="post_like">

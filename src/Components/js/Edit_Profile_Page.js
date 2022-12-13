@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Css/Edit_Profile_Page.css";
 import Back_Arrow from "../images/Inbox_page/Back_Arrow.png";
 import { Link } from "react-router-dom";
@@ -8,17 +8,16 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 
 export default function Edit_Profile_Page() {
-
-
-   const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [phone_no, setPhone_no] = useState("");
   const [bio, setBio] = useState("");
   const [profile, setProfile] = useState("");
+  const [email, setEmail] = useState("");
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
 
   const handleImageUpload = (e) => {
-    setProfile(e.target.files[0])
+    setProfile(e.target.files[0]);
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
@@ -34,15 +33,39 @@ export default function Edit_Profile_Page() {
   //  image upload end
 
 
+
+
+
   // get userData APi
 
+  useEffect(() => {
+    getUserData();
+  }, []);
 
+  const getUserData = async () => {
+    var token = localStorage.getItem("token");
 
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    let result = await fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/profile/getProfileData`,
+      requestOptions
+    );
+    result = await result.json();
+    setProfile(result.profile);
+    setBio(result.bio);
+    setName(result.name);
+    setPhone_no(result.phone_no);
+    setEmail(result.email);
+  };
 
   // end Get UserData Api
-
- 
 
   async function editProfile() {
     var myHeaders = new Headers();
@@ -52,7 +75,7 @@ export default function Edit_Profile_Page() {
     var FormData = require("form-data");
     var data = new FormData();
     data.append("name", name);
-    console.log("nameee",name)
+    console.log("nameee", name);
     data.append("phone_no", phone_no);
     data.append("bio", bio);
     data.append("profile", profile);
@@ -91,8 +114,8 @@ export default function Edit_Profile_Page() {
         <div className="E">
           <div className="E_1">
             <div className="E_1_1">
-              <img id="E_1" ref={uploadedImage} src={edit_profile}></img>
-              <input
+              <img id="E_1" ref={uploadedImage} src={process.env.REACT_APP_2_BASE_URL + "/" +profile }></img>
+              <input 
                 id="fileupload"
                 type="file"
                 accept="/images/*"
@@ -103,14 +126,13 @@ export default function Edit_Profile_Page() {
               <div id="E_1edit">
                 <img
                   value={profile}
-             
                   onClick={() => imageUploader.current.click()}
                   src={edit_uplod_profile}
                 ></img>
               </div>
             </div>
-            <h1>Mr Astronut</h1>
-            <h2>iammemer@memee.com</h2>
+            <h1>{name}</h1>
+            <h2>{email}</h2>
           </div>
         </div>
 
@@ -127,7 +149,12 @@ export default function Edit_Profile_Page() {
 
           <div className="EEE">
             <h5>Email</h5>
-            <input type="text" placeholder="iammemer@memee.com" />
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="iammemer@memee.com"
+            />
           </div>
 
           <div className="EEE">
