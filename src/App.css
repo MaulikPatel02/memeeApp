@@ -448,7 +448,8 @@ body::-webkit-scrollbar{
   --support_pending_color:rgba(255, 205, 47, 1);
   --searchexplore_placeholder_color:white;
   --support_page_2_drp_dwn_color:rgba(122, 122, 122, 1);
-  --attach_img_proof_color:white
+  --attach_img_proof_color:white;
+  --commentpage_input_background:rgba(235, 56, 80, 0.479);
 }
 
 /* memee theme */

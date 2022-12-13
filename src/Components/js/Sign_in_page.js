@@ -38,7 +38,7 @@ export default function Sign_in_page() {
         console.log("res", response.data);
         if (response.data.status == 200) {
           // toast.success(response.data.message);
-          localStorage.setItem("userdata", sendData);
+          localStorage.setItem("userdata",JSON.stringify( response.data.data));
           console.log("tokens");
           localStorage.setItem("token", response.data.data.tokens[0].token);
 

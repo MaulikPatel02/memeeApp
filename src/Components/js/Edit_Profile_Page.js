@@ -18,6 +18,7 @@ export default function Edit_Profile_Page() {
   const imageUploader = React.useRef(null);
 
   const handleImageUpload = (e) => {
+    setProfile(e.target.files[0])
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
@@ -32,6 +33,15 @@ export default function Edit_Profile_Page() {
 
   //  image upload end
 
+
+  // get userData APi
+
+
+
+
+
+  // end Get UserData Api
+
  
 
   async function editProfile() {
@@ -42,6 +52,7 @@ export default function Edit_Profile_Page() {
     var FormData = require("form-data");
     var data = new FormData();
     data.append("name", name);
+    console.log("nameee",name)
     data.append("phone_no", phone_no);
     data.append("bio", bio);
     data.append("profile", profile);
@@ -92,7 +103,7 @@ export default function Edit_Profile_Page() {
               <div id="E_1edit">
                 <img
                   value={profile}
-                  onChange={(e) => setProfile(e.target.files[0])}
+             
                   onClick={() => imageUploader.current.click()}
                   src={edit_uplod_profile}
                 ></img>

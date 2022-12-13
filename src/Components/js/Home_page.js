@@ -295,7 +295,7 @@ export default function Home_page() {
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
                       <Link to="/Other_person_profile_page">
-                        <img src={process.env.REACT_APP_2_BASE_URL + "/" + item.userProfile}></img>
+                        <img id="postuserprofilepic" src={process.env.REACT_APP_2_BASE_URL + "/" + item.userProfile}></img>
                       </Link>
                       <div className="post_username_details">
                         <h5>{item.username}</h5>

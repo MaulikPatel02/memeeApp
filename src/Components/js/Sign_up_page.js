@@ -26,7 +26,7 @@ export default function Sign_up_page() {
 
 
   async function signUp() {
-    console.table(email, password, cPassword);
+    // console.table(email, password, cPassword);
     const sendData = JSON.stringify({
       email: email,
       password: password,
@@ -35,7 +35,7 @@ export default function Sign_up_page() {
 
     var config = {
       method: "post",
-      url: `${process.env.REACT_APP_BASE_URL}/signUp`,
+      url: `${process.env.REACT_APP_2_BASE_URL}/signUp`,
       headers: {
         "Content-Type": "application/json",
       },

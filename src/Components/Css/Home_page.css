@@ -187,6 +187,12 @@
     align-items: center;
     width: 100%;
 }
+#postuserprofilepic{
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    border:2px solid white;
+}
 .User_pofile_post_Details{
     display: flex;
     justify-content: space-between;
@@ -200,6 +206,7 @@
 .post_username_details{
     margin-left: 3%;
 }
+
 .post_username_details h5{
     margin: 0;
     color: rgba(255, 255, 255, 1);

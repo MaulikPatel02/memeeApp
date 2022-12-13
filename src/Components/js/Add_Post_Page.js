@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Css/Add_Post_Page.css";
-import { Link, useNavigate } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import Back_Arrow from "../images/Back_Arrow.png";
 import upload from "../images/Post_Images/upload.png";
 import { toast } from "react-toastify";
@@ -35,12 +35,12 @@ export default function Add_Post_Page() {
     };
 
     fetch(
-      `${process.env.REACT_APP_2_BASE_URL}/userpost/638d6e3231ceee4e3ba8f9c3`,
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/${JSON.parse( localStorage.getItem('userdata'))._id}`,
       requestOptions
     )
       .then(function (response) {
-        console.log(response.data);
-        if (response.data.status == 200) {
+        console.log(response);
+        if (response.status == 200) {
           toast.success("Succesfully Upload Post");
           Navigate("/Home_page");
         } else {
@@ -95,7 +95,7 @@ export default function Add_Post_Page() {
             ref={imageUploader}
           ></input>
 
-          
+
         </div>
 
         <div className="post_details">
