@@ -25,7 +25,7 @@ export default function Sign_in_page() {
 
     var config = {
       method: "post",
-      url: `${process.env.REACT_APP_BASE_URL}/login`,
+      url: `${process.env.REACT_APP_2_BASE_URL}/login`,
       headers: {
         "Content-Type": "application/json",
       },

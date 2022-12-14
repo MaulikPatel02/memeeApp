@@ -94,9 +94,8 @@ export default function Edit_Profile_Page() {
       .then((result) => {
         if (result.status == 200) {
           localStorage.setItem("userdata", JSON.stringify(result.data));
+          toast.success("Profile Update Successfully");
         }
-        console.log(result);
-        toast.success(JSON.parse(result).message);
       })
 
       .catch((error) => console.log("error", error));

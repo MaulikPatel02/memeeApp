@@ -34,16 +34,13 @@ import S_9 from "../images/Share_Post_Social_Icon/S_9.png";
 import S_10 from "../images/Share_Post_Social_Icon/S_10.png";
 
 export default function Home_page() {
-  const types = new Map([
-    ["jpg", "img"],
-    ["gif", "img"],
-    ["mp4", "video"],
-    ["3gp", "video"],
-  ]);
-
+  const [story, setStory] = useState("");
+  const [newMemes, setNewMemes] = useState();
+  const [userData, setUserData] = useState([]);
   const [like, setLike] = useState(false);
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(65);
+  const [trending, setTrending] = useState();
 
   const [following, setFollowing] = useState(true);
 
@@ -51,10 +48,15 @@ export default function Home_page() {
 
   const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
 
+
+
+
+
+
+
+
+
   //  post get Api
-
-  const [userData, setUserData] = useState([]);
-
   const postList = async () => {
     var token = localStorage.getItem("token");
 
@@ -72,6 +74,7 @@ export default function Home_page() {
     );
     const resData = await fetchData.json();
     setUserData(resData.postData);
+  
   };
 
   useEffect(() => {
@@ -86,14 +89,12 @@ export default function Home_page() {
     setNewMemes(false);
   };
 
-  const [trending, setTrending] = useState();
   const trendingHandler = () => {
     setFollowing(false);
     setTrending(true);
     setNewMemes(false);
   };
 
-  const [newMemes, setNewMemes] = useState();
   const newMemesHandler = () => {
     setFollowing(false);
     setTrending(false);
@@ -212,7 +213,9 @@ export default function Home_page() {
           <div className="home_page_Header">
             <div className="ppicndname">
               <div className="user_profile_image">
-                <img src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}></img>
+                <img
+                  src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}
+                ></img>
               </div>
               <div className="user_name">
                 <h2>
@@ -270,11 +273,22 @@ export default function Home_page() {
             <div className="Add_your_story">
               <br />
               <h4>Add&nbsp;story</h4>
-              <img id="storyUserImagepic" src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}></img>
-              <div>
-                {/* <input type="file" name="image" accept="image/*" capture="user"></input> */}
-                {/* <input type="file" accept="image/*" capture="camera" /> */}
-              </div>
+              <img
+                id="storyUserImagepic"
+                src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}
+              ></img>
+
+              <input
+              value={story}
+             
+                id="choosestoryimage"
+                type="file"
+                name="image"
+                accept="image/*"
+                capture="user"
+                onChange={(e) => setStory(e.target.value)}
+              ></input>
+
               <h5>You</h5>
             </div>
 
@@ -303,7 +317,7 @@ export default function Home_page() {
                 <div key={i} className="Home_page_post">
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
-                      <Link to="/Other_person_profile_page">
+                      <Link to="/Other_person_profile_page" state={{data:item}}>
                         <img
                           id="postuserprofilepic"
                           src={
@@ -327,26 +341,13 @@ export default function Home_page() {
                   </div>
                   <div className="user_posted_media">
                     <div className="POsed_media_By_user">
-                      {/* {
-                  
-                   types.get( new URL(process.env.REACT_APP_2_BASE_URL + "/" + item.userPost).pathname.split(".")[1]) == "video" ? */}
-
-                      {/* <video
-                   autoPlay={true}
-                   src={
-                     process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
-                   }
-                   type="video/mp4"
-                 /> */}
-                      {/* : */}
+                      
                       <img
                         onDoubleClick={imagePostLikeHandler}
                         src={
                           process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
                         }
                       ></img>
-
-                      {/* } */}
                     </div>
 
                     <div className="likesharecomment">
@@ -358,7 +359,7 @@ export default function Home_page() {
                         )}
                         <h5>{item.like}k</h5>
                       </div>
-                      <Link to="/Comments_page">
+                      <Link to="/Comments_page" state={{id:item._id}}>
                         <div className="post_like">
                           <svg
                             width="20"
@@ -389,7 +390,7 @@ export default function Home_page() {
                           />
                         </svg>
 
-                        <h5>{item.share}10</h5>
+                        <h5>{item.share}</h5>
                       </div>
                     </div>
                   </div>

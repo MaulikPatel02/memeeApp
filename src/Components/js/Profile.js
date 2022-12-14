@@ -25,6 +25,9 @@ export default function Profile() {
 
   const userProfile = JSON.parse(localStorage.getItem("userdata")).profile
 
+  const userBio = JSON.parse(localStorage.getItem("userdata")).bio
+
+
   const tableData = [
     {
       id: 1,
@@ -183,8 +186,7 @@ export default function Profile() {
               </div>
 
               <p>
-                “Like to travel and shoot cinematic videos and love to catpure
-                nature”
+                “{userBio}”
               </p>
             </div>
           </div>

@@ -52,6 +52,17 @@
     font-weight: 400;
     letter-spacing: 0.5px;
 }
+#commentsuserprofile{
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+}
+#commentsuserprofile2{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
 .c_d_1 h6{
    color: var(--comment-cd_1_color);
    font-size: 12px;

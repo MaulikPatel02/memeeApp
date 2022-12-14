@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Css/Other_person_profile_page.css";
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Add from "../images/Home_page/Add.png";
 import Coin from "../images/Home_page/Coin.png";
 import Profile_user_img from "../images/other_profile_pafe/other_profile.png";
@@ -19,6 +19,19 @@ import TournamentOutline from "../images/Home_page/tournament.png";
 import ProfileFill from "../images/Profile_page/Profile2.png";
 
 export default function Other_person_profile_page() {
+  const location= useLocation()
+  const[data,setData]=useState("")
+useEffect(()=>{
+  setData(location.state.data)
+},[])
+
+
+
+
+
+
+
+
   const tableData = [
     {
       id: 1,
@@ -135,7 +148,7 @@ export default function Other_person_profile_page() {
                     <img src={Back_Arrow}></img>{" "}
                   </Link>{" "}
                   &nbsp;&nbsp;&nbsp;
-                  <h3>Inbox</h3>
+                  <h3></h3>
                 </div>
                 <Link to="/Add_Coins_page">
                   <div className="add_coinOfProfile">
@@ -147,8 +160,8 @@ export default function Other_person_profile_page() {
               </div>
 
               <div className="profile_1_other_user">
-                <img src={Profile_user_img}></img>
-                <h1>Mr Alex Bhatti</h1>
+                <img src={ process.env.REACT_APP_2_BASE_URL + "/" + data.userProfile}></img>
+                <h1>{data.username}</h1>
 
                 <div className="followothermessopt">
                   <button id="follo">Follow</button>
@@ -175,8 +188,7 @@ export default function Other_person_profile_page() {
                 </div>
 
                 <p>
-                  “Like to travel and shoot cinematic videos and love to catpure
-                  nature”
+                  “{data.userBio}”
                 </p>
               </div>
             </div>
