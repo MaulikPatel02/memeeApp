@@ -270,7 +270,7 @@ export default function Home_page() {
           </div>
 
           <div className="add_story">
-            <div className="Add_your_story">
+            <div className="Add_your_story" style={{ backgroundImage: `url(${'../'})` }}>
               <br />
               <h4>Add&nbsp;story</h4>
               <img
