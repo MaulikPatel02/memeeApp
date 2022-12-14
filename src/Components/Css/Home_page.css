@@ -39,6 +39,12 @@
 .add_coin img{
     height: 16px;
 }
+#storyUserImagepic{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
 .add_coin h3{
     font-size: 14px;
     color: white;
@@ -47,6 +53,7 @@
 .user_profile_image img{
     height: 38px;
     width: 39px;
+    border-radius: 50%;
 }
 .user_name h2{
     color: white;

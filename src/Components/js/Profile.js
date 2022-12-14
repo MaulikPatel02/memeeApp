@@ -23,6 +23,8 @@ export default function Profile() {
 
   const userName=JSON.parse(localStorage.getItem('userdata')).name
 
+  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile
+
   const tableData = [
     {
       id: 1,
@@ -160,7 +162,7 @@ export default function Profile() {
             </div>
 
             <div className="profile_1_user">
-              <img src={Profile_user_img}></img>
+            <img src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}></img>
               <h1>{userName}</h1>
 
               <div className="Profile_following">

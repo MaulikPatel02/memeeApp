@@ -56,6 +56,9 @@ text-align: center;
 }
 .profile_1_user img{
     height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    border: 3px solid white;
 }
 .profile_1_user h1{
     color: white;

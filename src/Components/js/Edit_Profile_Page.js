@@ -32,10 +32,6 @@ export default function Edit_Profile_Page() {
 
   //  image upload end
 
-
-
-
-
   // get userData APi
 
   useEffect(() => {
@@ -68,17 +64,19 @@ export default function Edit_Profile_Page() {
   // end Get UserData Api
 
   async function editProfile() {
+    var FormData = require("form-data");
     var myHeaders = new Headers();
     var token = localStorage.getItem("token");
     myHeaders.append("Authorization", `Bearer ${token}`);
-    console.table(name, phone_no, bio, profile);
-    var FormData = require("form-data");
+    // console.table(name, phone_no, bio, profile);
+
     var data = new FormData();
+    if (typeof profile === "object") {
+      data.append("profile", profile);
+    }
     data.append("name", name);
-    console.log("nameee", name);
     data.append("phone_no", phone_no);
     data.append("bio", bio);
-    data.append("profile", profile);
     console.log("profile", profile);
     var requestOptions = {
       method: "POST",
@@ -88,11 +86,15 @@ export default function Edit_Profile_Page() {
     };
 
     fetch(
-      `${process.env.REACT_APP_BASE_URL}/profile/updateProfile`,
+      `${process.env.REACT_APP_2_BASE_URL}/profile/updateProfile`,
       requestOptions
     )
-      .then((response) => response.text())
+      .then((response) => response.json())
+
       .then((result) => {
+        if (result.status == 200) {
+          localStorage.setItem("userdata", JSON.stringify(result.data));
+        }
         console.log(result);
         toast.success(JSON.parse(result).message);
       })
@@ -114,15 +116,18 @@ export default function Edit_Profile_Page() {
         <div className="E">
           <div className="E_1">
             <div className="E_1_1">
-              <img id="E_1" ref={uploadedImage} src={process.env.REACT_APP_2_BASE_URL + "/" +profile }></img>
-              <input 
+              <img
+                id="E_1"
+                ref={uploadedImage}
+                src={process.env.REACT_APP_2_BASE_URL + "/" + profile}
+              ></img>
+              <input
                 id="fileupload"
                 type="file"
                 accept="/images/*"
                 onChange={handleImageUpload}
                 ref={imageUploader}
               ></input>
-              {/* <img  src={edit_2}></img> */}
               <div id="E_1edit">
                 <img
                   value={profile}

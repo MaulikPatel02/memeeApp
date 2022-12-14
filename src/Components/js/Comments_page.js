@@ -20,10 +20,6 @@ export default function Comments_page() {
     setInputList(event.target.value);
   };
   const listOfItem = () => {
-    // setItem((oldItems) => {
-    //   return [...oldItems, inputList];
-    // });
-    // setInputList("");
     var myHeaders = new Headers();
     var token = localStorage.getItem("token");
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -40,7 +36,7 @@ export default function Comments_page() {
     };
   
     fetch(
-      `${process.env.REACT_APP_BASE_URL}/userpost/63871b8cd4798007dbfddac9`,
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/63871b8cd4798007dbfddac9`,
       requestOptions
     )
       .then(function (response) {

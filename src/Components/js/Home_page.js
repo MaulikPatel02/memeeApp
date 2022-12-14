@@ -34,12 +34,12 @@ import S_9 from "../images/Share_Post_Social_Icon/S_9.png";
 import S_10 from "../images/Share_Post_Social_Icon/S_10.png";
 
 export default function Home_page() {
-
-  const types = new Map([["jpg", "img"], ["gif", "img"], ["mp4", "video"], ["3gp", "video"]])
-
-
-
-
+  const types = new Map([
+    ["jpg", "img"],
+    ["gif", "img"],
+    ["mp4", "video"],
+    ["3gp", "video"],
+  ]);
 
   const [like, setLike] = useState(false);
   const [open, setOpen] = useState(false);
@@ -48,6 +48,8 @@ export default function Home_page() {
   const [following, setFollowing] = useState(true);
 
   const userName = JSON.parse(localStorage.getItem("userdata")).name;
+
+  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
 
   //  post get Api
 
@@ -210,7 +212,7 @@ export default function Home_page() {
           <div className="home_page_Header">
             <div className="ppicndname">
               <div className="user_profile_image">
-                <img src={Profile_image}></img>
+                <img src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}></img>
               </div>
               <div className="user_name">
                 <h2>
@@ -268,7 +270,7 @@ export default function Home_page() {
             <div className="Add_your_story">
               <br />
               <h4>Add&nbsp;story</h4>
-              <img src={Story_user_img_1}></img>
+              <img id="storyUserImagepic" src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}></img>
               <div>
                 {/* <input type="file" name="image" accept="image/*" capture="user"></input> */}
                 {/* <input type="file" accept="image/*" capture="camera" /> */}
@@ -325,50 +327,26 @@ export default function Home_page() {
                   </div>
                   <div className="user_posted_media">
                     <div className="POsed_media_By_user">
-                    
-
-
-
-
-
-
-
-
-
-
-                    {/* {
+                      {/* {
                   
                    types.get( new URL(process.env.REACT_APP_2_BASE_URL + "/" + item.userPost).pathname.split(".")[1]) == "video" ? */}
-                     
-                   {/* <video
+
+                      {/* <video
                    autoPlay={true}
                    src={
                      process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
                    }
                    type="video/mp4"
                  /> */}
-                 {/* : */}
-                 <img
-                 onDoubleClick={imagePostLikeHandler}
-                 src={
-                   process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
-                 }
-               ></img>
-                       
-                    {/* } */}
-                    
+                      {/* : */}
+                      <img
+                        onDoubleClick={imagePostLikeHandler}
+                        src={
+                          process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
+                        }
+                      ></img>
 
-                     
-
-                    
-
-
-
-
-
-
-
-
+                      {/* } */}
                     </div>
 
                     <div className="likesharecomment">
