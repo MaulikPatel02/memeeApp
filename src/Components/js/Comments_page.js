@@ -4,23 +4,16 @@ import Back_Arrow from "../images/Back_Arrow.png";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Comments_page() {
-  var postId=""
-  const location= useLocation()
- 
-
+  const location = useLocation();
 
   const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
 
   const [comment, setComment] = useState("");
   const [userData, setUserData] = useState([]);
 
-  useEffect(()=>{
-
-   
-  
-      commentsList();
-   
-  },[])
+  useEffect(() => {
+    commentsList();
+  }, []);
 
   // comments Api
 
@@ -52,38 +45,36 @@ export default function Comments_page() {
       requestOptions
     )
       .then((response) => response.text())
-      .then((result) => console.log(result),commentsList(),setComment(""))
+      .then((result) => {
+        if (result) {
+          commentsList();
+          setComment("");
+        }
+      })
       .catch((error) => console.log("error", error));
   };
 
   // Comments get Api
-  
 
+  const commentsList = async () => {
+    var token = localStorage.getItem("token");
 
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
-const commentsList=async()=>{
-  console.log("sdbwjfghwerhwrqwgdfrtyu")
-  var token = localStorage.getItem("token");
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const fetchData = await fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/${location.state.id}`,
+      requestOptions
+    );
 
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${token}`);
-
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
+    const data = await fetchData.json();
+    setUserData(data);
   };
-  const fetchData = await fetch(
-    `${process.env.REACT_APP_2_BASE_URL}/userpost/comment/${location.state.id}`,
-    requestOptions
-  );
-
-  const data = await fetchData.json();
-  setUserData(data);
-  
-}
-
-
 
   return (
     <>
@@ -101,9 +92,10 @@ const commentsList=async()=>{
             {userData.map((itemVal, index) => {
               return (
                 <div key={index} className="User_comments">
+                  {console.log("comments length", itemVal.length)}
                   <div className="cmd_User_img">
                     <img
-                    id="commentsuserprofile2"
+                      id="commentsuserprofile2"
                       src={
                         process.env.REACT_APP_2_BASE_URL +
                         "/" +

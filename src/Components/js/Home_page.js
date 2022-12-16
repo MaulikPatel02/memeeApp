@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../Css/Home_page.css";
-import Profile_image from "../images/Home_page/Profile_image.png";
 import Notification from "../images/Home_page/Notification.png";
 import Add from "../images/Home_page/Add.png";
 import Coin from "../images/Home_page/Coin.png";
-import Story_user_img_1 from "../images/Home_page/Story_user_img_1.png";
 import Story_user_img_2 from "../images/Home_page/Story_user_img_2.png";
-import Story_user_img_3 from "../images/Home_page/Story_user_img_3.png";
-import Story_user_img_4 from "../images/Home_page/Story_user_img_4.png";
 import Story_1 from "../images/Home_page/Story_1.png";
-import Story_2 from "../images/Home_page/Story_2.png";
-import User_post_img from "../images/Home_page/User_post_img.png";
 import three_dot from "../images/Home_page/three_dot.png";
-import post_pic from "../images/Home_page/post.png";
 import Like from "../images/Home_page/Like.png";
-import User_post2_img from "../images/Home_page/post_2.png";
-import { json, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import HomeFill from "../images/Home_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
@@ -29,59 +21,24 @@ import S_4 from "../images/Share_Post_Social_Icon/S_4.png";
 import S_5 from "../images/Share_Post_Social_Icon/S_5.png";
 import S_6 from "../images/Share_Post_Social_Icon/S_6.png";
 import S_7 from "../images/Share_Post_Social_Icon/S_7.png";
-import S_8 from "../images/Share_Post_Social_Icon/S_8.png";
 import S_9 from "../images/Share_Post_Social_Icon/S_9.png";
 import S_10 from "../images/Share_Post_Social_Icon/S_10.png";
+import { toast } from "react-toastify";
 
 export default function Home_page() {
+  const Navigate = useNavigate();
   const [story, setStory] = useState("");
   const [newMemes, setNewMemes] = useState();
   const [userData, setUserData] = useState([]);
-  const [like, setLike] = useState(false);
   const [open, setOpen] = useState(false);
-  const [count, setCount] = useState(65);
   const [trending, setTrending] = useState();
-
-  const [following, setFollowing] = useState(true);
-
-  const userName = JSON.parse(localStorage.getItem("userdata")).name;
-
-  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
-
-
-
-
-
-
-
-
-
-  //  post get Api
-  const postList = async () => {
-    var token = localStorage.getItem("token");
-
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`);
-
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    const fetchData = await fetch(
-      `${process.env.REACT_APP_2_BASE_URL}/userpost/getPostDataAll`,
-      requestOptions
-    );
-    const resData = await fetchData.json();
-    setUserData(resData.postData);
-  
-  };
+  const [tableData,setTableData]=useState([])
+  const [userStory,setUserStory]=useState("")
 
   useEffect(() => {
     postList();
+    storyList();
   }, []);
-
-  // end post get api
 
   const followingHandler = () => {
     setFollowing(true);
@@ -105,106 +62,175 @@ export default function Home_page() {
     setOpen(!open);
   };
 
-  const likeImage = () => {
-    setLike(!like);
-    setCount(count - 1);
-  };
-  const likeImage2 = () => {
-    setLike(!like);
-    setCount(count + 1);
-  };
-
-  const imagePostLikeHandler = () => {
-    setLike(true);
-    setCount(count + 1);
+  const likeImage = (id, like) => {
+    if (!like) {
+      likePost(id);
+    } else {
+      unLikePost(id);
+    }
   };
 
-  const tableData = [
-    {
-      id: 1,
-      story: Story_1,
-      user_image: Story_user_img_2,
-      user_name: "Charlotte",
-    },
-    {
-      id: 2,
-      story: Story_2,
-      user_image: Story_user_img_3,
-      user_name: "Miranda",
-    },
-    {
-      id: 3,
-      story: Story_1,
-      user_image: Story_user_img_4,
-      user_name: "Moheen",
-    },
-    {
-      id: 4,
-      story: Story_2,
-      user_image: Story_user_img_3,
-      user_name: "Miranda",
-    },
-    {
-      id: 5,
-      story: Story_1,
-      user_image: Story_user_img_2,
-      user_name: "Moheen",
-    },
-    {
-      id: 6,
-      story: Story_2,
-      user_image: Story_user_img_3,
-      user_name: "Miranda",
-    },
-    {
-      id: 7,
-      story: Story_1,
-      user_image: Story_user_img_4,
-      user_name: "Moheen",
-    },
-    {
-      id: 1,
-      story: Story_1,
-      user_image: Story_user_img_2,
-      user_name: "Charlotte",
-    },
-    {
-      id: 2,
-      story: Story_2,
-      user_image: Story_user_img_3,
-      user_name: "Miranda",
-    },
-    {
-      id: 3,
-      story: Story_1,
-      user_image: Story_user_img_4,
-      user_name: "Moheen",
-    },
-    {
-      id: 4,
-      story: Story_2,
-      user_image: Story_user_img_3,
-      user_name: "Miranda",
-    },
-    {
-      id: 5,
-      story: Story_1,
-      user_image: Story_user_img_2,
-      user_name: "Moheen",
-    },
-    {
-      id: 6,
-      story: Story_2,
-      user_image: Story_user_img_3,
-      user_name: "Miranda",
-    },
-    {
-      id: 7,
-      story: Story_1,
-      user_image: Story_user_img_4,
-      user_name: "Moheen",
-    },
-  ];
+
+
+  const [following, setFollowing] = useState(true);
+
+  const userName = JSON.parse(localStorage.getItem("userdata")).name;
+  const userId = JSON.parse(localStorage.getItem("userdata"))._id;
+
+  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
+
+  //  Like Post APi
+
+  const likePost = (id) => {
+    var token = localStorage.getItem("token");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/like/${id}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        postList();
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  //  End Like Post Api
+
+  // unLike Post APi
+
+  const unLikePost = (id) => {
+    var token = localStorage.getItem("token");
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/unlike/${id}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        postList();
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  //  END Unlike Post APi
+
+
+
+//  All Story GET APi
+
+const storyList = async () => {
+  var token = localStorage.getItem("token");
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  const fetchData = await fetch(
+    `${process.env.REACT_APP_2_BASE_URL}/story/storyGetAll`,
+    requestOptions
+  );
+  const resData = await fetchData.json();
+  setTableData(resData);
+  for (let index = 0; index < resData.length; index++) {
+   if(userId == resData[index].userId) {
+    setUserStory(resData[index].story)
+   }
+    
+  }
+};
+
+
+//  END All Story GET APi
+
+
+
+
+  //   All post get Api
+  const postList = async () => {
+    var token = localStorage.getItem("token");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const fetchData = await fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/getPostDataAll`,
+      requestOptions
+    );
+    const resData = await fetchData.json();
+    setUserData(resData.postData);
+  };
+
+  // end All post get api
+
+  //  Story Post Data APi
+
+  const uploadStory = (e) => {
+    var myHeaders = new Headers();
+    var token = localStorage.getItem("token");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var formdata = new FormData();
+    formdata.append("story", e.target.files[0]);
+    formdata.append("userId", userId);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/story/storyUpload/${
+        JSON.parse(localStorage.getItem("userdata"))._id
+      }`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then(function (response) {
+        console.log(response);
+        if (response.status == 200) {
+          toast.success("Succesfully Upload Story");
+          setStory(response.data.story);
+          console.log("story", response.data.story);
+          Navigate("/Home_page");
+        } else {
+          toast.error("Try Again Post Not Uploded");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  //  End Story Post Data Api
 
   return (
     <>
@@ -254,7 +280,7 @@ export default function Home_page() {
               onClick={newMemesHandler}
               className={newMemes ? "following" : "following2"}
             >
-              <Link to="/New_Trending_Memes_Page">
+              <Link to="/">
                 <h5>New Memes</h5>
               </Link>
             </div>
@@ -270,7 +296,15 @@ export default function Home_page() {
           </div>
 
           <div className="add_story">
-            <div className="Add_your_story" style={{ backgroundImage: `url(${'../'})` }}>
+            <div
+              className="Add_your_story"
+              style={{
+                backgroundImage: `url(${
+                  process.env.REACT_APP_2_BASE_URL + "/" + userStory
+                })`,
+                backgroundSize: "cover",
+              }}
+            >
               <br />
               <h4>Add&nbsp;story</h4>
               <img
@@ -279,14 +313,12 @@ export default function Home_page() {
               ></img>
 
               <input
-              value={story}
-             
                 id="choosestoryimage"
                 type="file"
                 name="image"
                 accept="image/*"
                 capture="user"
-                onChange={(e) => setStory(e.target.value)}
+                onChange={(e) => uploadStory(e)}
               ></input>
 
               <h5>You</h5>
@@ -294,16 +326,16 @@ export default function Home_page() {
 
             {tableData.map((data, i) => {
               return (
-                <Link to="/Memee_user_story">
+                <Link to="/Memee_user_story" state={{storyData:data}}>
                   <div
                     key={i}
-                    style={{ backgroundImage: `url(${data.story})` }}
+                    style={{ backgroundImage: `url(${process.env.REACT_APP_2_BASE_URL + "/" + data.story})` }}
                     className="Add_your_story2"
                   >
                     <div className="Addstory">
                       <br />
-                      <img src={data.user_image}></img>
-                      <h5>{data.user_name}</h5>
+                      <img src={process.env.REACT_APP_2_BASE_URL + "/" +data.userProfile}></img>
+                      <h5>{data.username}</h5>
                     </div>
                   </div>
                 </Link>
@@ -312,12 +344,15 @@ export default function Home_page() {
           </div>
 
           <div>
-            {userData.map((item, i) => {
+            {userData.map((item) => {
               return (
-                <div key={i} className="Home_page_post">
+                <div key={item._id} className="Home_page_post">
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
-                      <Link to="/Other_person_profile_page" state={{data:item}}>
+                      <Link
+                        to="/Other_person_profile_page"
+                        state={{ data: item }}
+                      >
                         <img
                           id="postuserprofilepic"
                           src={
@@ -341,9 +376,7 @@ export default function Home_page() {
                   </div>
                   <div className="user_posted_media">
                     <div className="POsed_media_By_user">
-                      
                       <img
-                        onDoubleClick={imagePostLikeHandler}
                         src={
                           process.env.REACT_APP_2_BASE_URL + "/" + item.userPost
                         }
@@ -352,14 +385,16 @@ export default function Home_page() {
 
                     <div className="likesharecomment">
                       <div className="post_like">
-                        {like ? (
-                          <img onClick={likeImage} src={Like}></img>
-                        ) : (
-                          <img onClick={likeImage2} src={Heart}></img>
-                        )}
-                        <h5>{item.like}k</h5>
+                        <img
+                          onClick={() =>
+                            likeImage(item._id, item.like.includes(userId))
+                          }
+                          src={item.like.includes(userId) ? Like : Heart}
+                        ></img>
+
+                        <h5>{item.like.length}</h5>
                       </div>
-                      <Link to="/Comments_page" state={{id:item._id}}>
+                      <Link to="/Comments_page" state={{ id: item._id }}>
                         <div className="post_like">
                           <svg
                             width="20"
@@ -373,7 +408,7 @@ export default function Home_page() {
                               fill="white"
                             />
                           </svg>
-                          <h5>175</h5>
+                          <h5>{item.comment}</h5>
                         </div>{" "}
                       </Link>
                       <div onClick={openSlider} className="post_like">

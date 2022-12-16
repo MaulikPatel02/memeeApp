@@ -4,14 +4,9 @@ import Navbar from "./Navbar";
 import { Link, useLocation } from "react-router-dom";
 import Add from "../images/Home_page/Add.png";
 import Coin from "../images/Home_page/Coin.png";
-import Profile_user_img from "../images/other_profile_pafe/other_profile.png";
 import Budge_1 from "../images/Profile_page/Budge_1.png";
 import Budge_2 from "../images/Profile_page/Budge_2.png";
 import Budge_3 from "../images/Profile_page/Budge_3.png";
-import post_1 from "../images/Profile_page/post_1.png";
-import post_2 from "../images/Profile_page/post_2.png";
-import post_1_1 from "../images/Profile_page/T_post_1.png";
-import post_2_2 from "../images/Profile_page/T_post_2.png";
 import Back_Arrow from "../images/Inbox_page/Back_Arrow.png";
 import HomeOutline from "../images/Explore_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
@@ -23,108 +18,47 @@ export default function Other_person_profile_page() {
   const[data,setData]=useState("")
 useEffect(()=>{
   setData(location.state.data)
+
+  commentsList();
 },[])
 
 
+const userId = location.state.data.userId
+;
+
+  const [tableData, setTableData] = useState([]);
+
+  //  GET APi Apply
+
+  const commentsList = async () => {
+    var token = localStorage.getItem("token");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const fetchData = await fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/getPostData/${userId}`,
+      requestOptions
+    );
+
+    const data = await fetchData.json();
+    setTableData(data.postData);
+   
+  };
+
+  // END GET APi
 
 
 
 
 
 
-  const tableData = [
-    {
-      id: 1,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-  ];
-
-  const tableData2 = [
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-  ];
+  
 
   const [showT, setShowT] = useState(false);
   const ShowTourPage = () => {
@@ -172,7 +106,7 @@ useEffect(()=>{
                 </div>
                 <div className="Profile_following">
                   <div className="P_f_1">
-                    <h3>37</h3>
+                    <h3>{tableData.length}</h3>
                     <h4>Posts</h4>
                   </div>
                   <span>|</span>
@@ -239,7 +173,7 @@ useEffect(()=>{
           {showP && (
             <div>
               <div className="postofUser_profile_page">
-                <h2>45 Posts</h2>
+                <h2>{tableData.length} Posts</h2>
                 <select>
                   <option>April</option>
                 </select>
@@ -251,7 +185,7 @@ useEffect(()=>{
                     <div key={i} className="Posted_profile_by_user1">
                       <Link to="/Post_Img_Page">
                         {" "}
-                        <img src={data.post}></img>
+                        <img src={process.env.REACT_APP_2_BASE_URL + "/" + data.userPost} />
                       </Link>
                     </div>
                   );
@@ -263,19 +197,19 @@ useEffect(()=>{
           {showT && (
             <div>
               <div className="postofUser_profile_page">
-                <h2>20 Posts</h2>
+                <h2>{tableData.length} Posts</h2>
                 <select>
                   <option>April</option>
                 </select>
               </div>
 
               <div className="Posted_profile_by_user">
-                {tableData2.map((data, i) => {
+                {tableData.map((data, i) => {
                   return (
                     <div key={i} className="Posted_profile_by_user1">
                       <Link to="/Post_Img_Page">
                         {" "}
-                        <img src={data.post}></img>
+                        <img src={process.env.REACT_APP_2_BASE_URL + "/" + data.userPost}></img>
                       </Link>
                     </div>
                   );

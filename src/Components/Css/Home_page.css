@@ -169,22 +169,27 @@
 .Add_your_story2{
     border-radius: 10px;
     text-align: center;
-    width:100%;
-    /* height:130px; */
+    height:130px;
     height: 100%;
-    margin-right: 8px;
+    width: 100px;
+    margin-right: 5px;
     background: url('../images/Home_page/Story_2.png');
     background-repeat: no-repeat;
 }
 .Addstory h5{
     color: rgba(255, 255, 255, 1);
-    font-size: 12px;
-    margin-top: 15px
+    font-size: 8px;
+    margin-top: 15px;
+    text-align: center;
 }
 .Addstory img{
     margin-top: 35px;
-    margin-left: 23px;
+    margin-left: 32px;
     margin-right: 35px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border:2px solid white;
 }
 .Addstory{
     background: url('../images/Home_page/Story_background.png');

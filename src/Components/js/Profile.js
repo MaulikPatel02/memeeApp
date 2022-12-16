@@ -18,58 +18,47 @@ import HomeOutline from "../images/Explore_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
 import TournamentOutline from "../images/Home_page/tournament.png";
 import ProfileFill from "../images/Profile_page/Profile2.png";
+import { useEffect } from "react";
 
 export default function Profile() {
+  const userName = JSON.parse(localStorage.getItem("userdata")).name;
 
-  const userName=JSON.parse(localStorage.getItem('userdata')).name
+  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
 
-  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile
+  const userBio = JSON.parse(localStorage.getItem("userdata")).bio;
 
-  const userBio = JSON.parse(localStorage.getItem("userdata")).bio
+  const userId = JSON.parse(localStorage.getItem("userdata"))._id;
 
+  const [tableData, setTableData] = useState([]);
 
-  const tableData = [
-    {
-      id: 1,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-    {
-      id: 2,
-      post: post_1,
-    },
-    {
-      id: 2,
-      post: post_2,
-    },
-  ];
+  //  GET APi Apply
+
+  useEffect(() => {
+    commentsList();
+  }, []);
+
+  const commentsList = async () => {
+    var token = localStorage.getItem("token");
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    const fetchData = await fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/userpost/getPostData/${userId}`,
+      requestOptions
+    );
+
+    const data = await fetchData.json();
+    setTableData(data.postData);
+   
+  };
+
+  // END GET APi
 
   const tableData2 = [
     {
@@ -165,12 +154,14 @@ export default function Profile() {
             </div>
 
             <div className="profile_1_user">
-            <img src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}></img>
+              <img
+                src={process.env.REACT_APP_2_BASE_URL + "/" + userProfile}
+              ></img>
               <h1>{userName}</h1>
 
               <div className="Profile_following">
                 <div className="P_f_1">
-                  <h3>37</h3>
+                  <h3>{tableData.length}</h3>
                   <h4>Posts</h4>
                 </div>
                 <span>|</span>
@@ -185,9 +176,7 @@ export default function Profile() {
                 </div>
               </div>
 
-              <p>
-                “{userBio}”
-              </p>
+              <p>“{userBio}”</p>
             </div>
           </div>
         </div>
@@ -243,7 +232,7 @@ export default function Profile() {
         {showP && (
           <div>
             <div className="postofUser_profile_page">
-              <h2>45 Posts</h2>
+              <h2>{tableData.length} Posts</h2>
               <select>
                 <option>April</option>
               </select>
@@ -255,7 +244,7 @@ export default function Profile() {
                   <div key={i} className="Posted_profile_by_user1">
                     <Link to="/Post_Img_Page">
                       {" "}
-                      <img src={data.post}></img>
+                      <img src={process.env.REACT_APP_2_BASE_URL + "/" + data.userPost}></img>
                     </Link>
                   </div>
                 );
@@ -267,19 +256,22 @@ export default function Profile() {
         {showT && (
           <div>
             <div className="postofUser_profile_page">
-              <h2>20 Posts</h2>
+              <h2>{tableData.length} Posts</h2>
               <select>
                 <option>April</option>
               </select>
             </div>
 
             <div className="Posted_profile_by_user">
-              {tableData2.map((data, i) => {
+              {tableData.map((data, i) => {
                 return (
                   <div key={i} className="Posted_profile_by_user1">
                     <Link to="/Post_Img_Page">
-                      {" "}
-                      <img src={data.post}></img>
+                      <img
+                        src={
+                          process.env.REACT_APP_2_BASE_URL + "/" + data.userPost
+                        }
+                      ></img>
                     </Link>
                   </div>
                 );
@@ -288,40 +280,6 @@ export default function Profile() {
           </div>
         )}
 
-        {/* <div className="navbar">
-          <Link to="/Home_page">
-            {" "}
-            <div className="home2">
-              <img src={Home}></img>
-              <h6>Home</h6>
-            </div>
-          </Link>
-          <Link to="/Expolor_page">
-            {" "}
-            <div className="home2">
-              <img src={explore}></img>
-              <h6>Explore</h6>
-            </div>
-          </Link>
-          &nbsp;
-          <div className="home3">
-            <img src={m_add}></img>
-          </div>
-          &nbsp;
-          <Link to="/Tournamet">
-                <div className='home2'>
-                    <img src={tournament}></img>
-                    <h6>Tournament</h6>
-                </div>
-                </Link>
-          <Link to="/Profile">
-            {" "}
-            <div className="home">
-              <img src={Profile2}></img>
-              <h6>Profile</h6>
-            </div>
-          </Link>
-        </div> */}
         <Navbar
           HomeColor={"gray"}
           ExploreColor={"gray"}

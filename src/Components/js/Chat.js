@@ -7,6 +7,7 @@ import Active from "../images/Message_page/Active.png";
 import Gallery from "../images/Chat_page/Gallery.png";
 import send from "../images/Chat_page/send.png";
 import emoji from "../images/Chat_page/emoji.png";
+import ScrollableFeed from 'react-scrollable-feed'
 
 export default function Chat() {
   const [inputList, setInputList] = useState("");
@@ -47,6 +48,7 @@ export default function Chat() {
             <h5>Are You Enjying Memee App ?</h5>
           </div>
 
+          <ScrollableFeed>
           {Item.map((itemVal, index) => {
             return (
               <div key={index} className="user_chat_1_1">
@@ -56,6 +58,7 @@ export default function Chat() {
               </div>
             );
           })}
+          </ScrollableFeed>
         </div>
 
         <div className="chat_keyboard">

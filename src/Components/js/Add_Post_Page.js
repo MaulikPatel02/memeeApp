@@ -25,7 +25,6 @@ export default function Add_Post_Page() {
     formdata.append("location", location);
     formdata.append("hashTag", hashTag);
     formdata.append("profile", profile);
-    console.log("profile", profile);
 
     var requestOptions = {
       method: "POST",
@@ -39,7 +38,6 @@ export default function Add_Post_Page() {
       requestOptions
     )
       .then(function (response) {
-        console.log(response);
         if (response.status == 200) {
           toast.success("Succesfully Upload Post");
           Navigate("/Home_page");

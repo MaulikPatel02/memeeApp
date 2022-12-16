@@ -77,7 +77,6 @@ export default function Edit_Profile_Page() {
     data.append("name", name);
     data.append("phone_no", phone_no);
     data.append("bio", bio);
-    console.log("profile", profile);
     var requestOptions = {
       method: "POST",
       body: data,
