@@ -34,18 +34,10 @@ export default function On_bording_page() {
     console.log(response);
   };
 
-  const componentClicked = () => {
-    console.log("helloo success");
-  };
+ 
 
 
-  // twitter login
 
-  // const authHandler = (err, data) => {
-  //   console.log(err, data);
-  // };
-  // const CONSUMER_KEY ="PyHxgJuyORZqhDiuKAne8LcxT";
-  // const CONSUMER_SECRET ="RBqOgWJfflgk2GLGmKtHFnHituqvf3vROPfAqzOPpfKficIrI9";
 
   return (
     <>

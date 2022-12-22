@@ -209,6 +209,7 @@ function App() {
 
               <Route path="Memee_user_story" element={<Memee_user_story />} />
               <Route path="Add_Post_Page" element={<Add_Post_Page />} />
+              <Route path="Faq_page" element={<Faq_page />} />
               <Route path="New_Trending_Memes_Page" element={<New_Trending_Memes_Page />} />
             </Routes>
           </div>

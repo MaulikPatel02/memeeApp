@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const signUpUser = createAsyncThunk("signUpUser", async (body) => {
-  console.log("======================body", body);
+
 
   const sendData = JSON.stringify({
     email: body.email,
@@ -29,7 +29,7 @@ export const signUpUser = createAsyncThunk("signUpUser", async (body) => {
 
   axios(config)
     .then(function (response) {
-      console.log(response.data);
+   
       return response.data;
 
     })
@@ -116,18 +116,13 @@ export const verifyOtp = createAsyncThunk("verifyOtp", async (body) => {
 
   axios(config)
     .then(function (response) {
-      console.log(response.data);
-      console.log(JSON.stringify(response.data.data.code));
+  
       return response.data;
 
     })
     .catch(function (error) {
       console.log(error);
     });
-  
-
-
-
 });
 
 

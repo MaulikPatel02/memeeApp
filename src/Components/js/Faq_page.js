@@ -3,6 +3,7 @@ import "../Css/Faq_page.css";
 import Back_Arrow from "../images/Back_Arrow.png";
 import right from "../images/right.png";
 import bottom from "../images/bottom.png";
+import { Link } from "react-router-dom";
 
 export default function Faq_page() {
   const [showMore, setShowMore] = useState(false);
@@ -23,7 +24,7 @@ export default function Faq_page() {
     <>
       <div className="Sign_in_page">
         <div className="faqArrow">
-          <img src={Back_Arrow}></img>
+        <Link to="/Tournamet">  <img src={Back_Arrow}></img></Link>
           <h3>FAQs</h3>
         </div>
         <div className="howcanhelp">

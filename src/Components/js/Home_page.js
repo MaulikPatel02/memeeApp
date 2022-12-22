@@ -35,6 +35,12 @@ export default function Home_page() {
   const [tableData,setTableData]=useState([])
   const [userStory,setUserStory]=useState("")
 
+  
+  const [following, setFollowing] = useState(true);
+    const userName = JSON.parse(localStorage.getItem("userdata")).name;
+  const userId = JSON.parse(localStorage.getItem("userdata"))._id;
+
+  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
   useEffect(() => {
     postList();
     storyList();
@@ -71,13 +77,6 @@ export default function Home_page() {
   };
 
 
-
-  const [following, setFollowing] = useState(true);
-
-  const userName = JSON.parse(localStorage.getItem("userdata")).name;
-  const userId = JSON.parse(localStorage.getItem("userdata"))._id;
-
-  const userProfile = JSON.parse(localStorage.getItem("userdata")).profile;
 
   //  Like Post APi
 
@@ -157,7 +156,7 @@ const storyList = async () => {
    if(userId == resData[index].userId) {
     setUserStory(resData[index].story)
    }
-    
+   
   }
 };
 
@@ -215,7 +214,7 @@ const storyList = async () => {
     )
       .then((response) => response.json())
       .then(function (response) {
-        console.log(response);
+   
         if (response.status == 200) {
           toast.success("Succesfully Upload Story");
           setStory(response.data.story);
@@ -280,22 +279,26 @@ const storyList = async () => {
               onClick={newMemesHandler}
               className={newMemes ? "following" : "following2"}
             >
-              <Link to="/">
+            
                 <h5>New Memes</h5>
-              </Link>
+             
             </div>
 
             <div
               onClick={trendingHandler}
               className={trending ? "following" : "following2"}
             >
-              <Link to="/">
+        
                 <h5>Trending</h5>
-              </Link>
+              
             </div>
           </div>
 
           <div className="add_story">
+           
+           {!userStory &&
+         
+           
             <div
               className="Add_your_story"
               style={{
@@ -316,20 +319,23 @@ const storyList = async () => {
                 id="choosestoryimage"
                 type="file"
                 name="image"
-                accept="image/*"
+                accept="image/*,video/mp4,video/webm"
                 capture="user"
                 onChange={(e) => uploadStory(e)}
               ></input>
 
               <h5>You</h5>
-            </div>
+            </div>}
+
+
+
 
             {tableData.map((data, i) => {
               return (
                 <Link to="/Memee_user_story" state={{storyData:data}}>
                   <div
                     key={i}
-                    style={{ backgroundImage: `url(${process.env.REACT_APP_2_BASE_URL + "/" + data.story})` }}
+                    style={{ backgroundImage: `url(${process.env.REACT_APP_2_BASE_URL + "/" + data.story})`}}
                     className="Add_your_story2"
                   >
                     <div className="Addstory">
@@ -349,7 +355,7 @@ const storyList = async () => {
                 <div key={item._id} className="Home_page_post">
                   <div className="User_pofile_post_Details">
                     <div className="post_user_details">
-                      <Link
+                     <Link
                         to="/Other_person_profile_page"
                         state={{ data: item }}
                       >

@@ -14,21 +14,19 @@ import TournamentOutline from "../images/Home_page/tournament.png";
 import ProfileFill from "../images/Profile_page/Profile2.png";
 
 export default function Other_person_profile_page() {
-  const location= useLocation()
-  const[data,setData]=useState("")
-useEffect(()=>{
-  setData(location.state.data)
-
-  commentsList();
-},[])
-
-
-const userId = location.state.data.userId
-;
-
+  const location = useLocation();
+  const [data, setData] = useState("");
+  const [follow, setFollow] = useState();
   const [tableData, setTableData] = useState([]);
+  useEffect(() => {
+    setData(location.state.data);
+    commentsList();
+  }, []);
+
+  const userId = location.state.data.userId;
 
   //  GET APi Apply
+  var myId = JSON.parse(localStorage.getItem("userdata"))._id;
 
   const commentsList = async () => {
     var token = localStorage.getItem("token");
@@ -48,17 +46,70 @@ const userId = location.state.data.userId
 
     const data = await fetchData.json();
     setTableData(data.postData);
-   
   };
 
   // END GET APi
 
+  // Follow PUT APi
 
+  const followUser = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("followid", userId);
 
+    var token = localStorage.getItem("token");
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+    fetch(
+      `${process.env.REACT_APP_2_BASE_URL}/signUp/followers`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then((flow) => {
+        setFollow(flow);
+       
+        commentsList()
+      });
+  };
 
-  
+  //  ENd Follow PUT API
+
+  // unFollow PUT APi
+
+  const unfollowUser = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    var token = localStorage.getItem("token");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("followid", userId);
+
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body:  urlencoded,
+      redirect: "follow",
+    };
+    fetch(`${process.env.REACT_APP_2_BASE_URL}/signUp/unfollow`, requestOptions)
+      .then((res) => res.json())
+      .then((flow) => {
+        setFollow(flow);
+        console.log('dataaaaa',follow.data.following);
+
+        commentsList()
+      });
+  };
+
+  //  ENd unFollow PUT API
 
   const [showT, setShowT] = useState(false);
   const ShowTourPage = () => {
@@ -94,11 +145,25 @@ const userId = location.state.data.userId
               </div>
 
               <div className="profile_1_other_user">
-                <img src={ process.env.REACT_APP_2_BASE_URL + "/" + data.userProfile}></img>
+                <img
+                  src={
+                    process.env.REACT_APP_2_BASE_URL + "/" + data.userProfile
+                  }
+                ></img>
                 <h1>{data.username}</h1>
 
                 <div className="followothermessopt">
-                  <button id="follo">Follow</button>
+              
+                  {data.followers?.includes(myId) ? (
+                   
+                     <button onClick={unfollowUser} id="follo2">
+                     unFollow
+                   </button>
+                  ) : (
+                    <button onClick={followUser} id="follo">
+                    Follow
+                  </button>
+                  )}
                   <Link to="/Chat">
                     {" "}
                     <button id="mess">Message</button>{" "}
@@ -111,19 +176,18 @@ const userId = location.state.data.userId
                   </div>
                   <span>|</span>
                   <div className="P_f_1">
-                    <h3>283k</h3>
+                    <h3>{data.followers?.length}</h3>
+                
                     <h4>Followers</h4>
                   </div>
                   <span>|</span>
                   <div className="P_f_1">
-                    <h3>488</h3>
-                    <h4>Followings</h4>
+                    <h3>{data.following?.length}</h3>
+                    <h4>Following</h4>
                   </div>
                 </div>
 
-                <p>
-                  “{data.userBio}”
-                </p>
+                <p>“{data.userBio}”</p>
               </div>
             </div>
           </div>
@@ -185,7 +249,13 @@ const userId = location.state.data.userId
                     <div key={i} className="Posted_profile_by_user1">
                       <Link to="/Post_Img_Page">
                         {" "}
-                        <img src={process.env.REACT_APP_2_BASE_URL + "/" + data.userPost} />
+                        <img
+                          src={
+                            process.env.REACT_APP_2_BASE_URL +
+                            "/" +
+                            data.userPost
+                          }
+                        />
                       </Link>
                     </div>
                   );
@@ -209,7 +279,13 @@ const userId = location.state.data.userId
                     <div key={i} className="Posted_profile_by_user1">
                       <Link to="/Post_Img_Page">
                         {" "}
-                        <img src={process.env.REACT_APP_2_BASE_URL + "/" + data.userPost}></img>
+                        <img
+                          src={
+                            process.env.REACT_APP_2_BASE_URL +
+                            "/" +
+                            data.userPost
+                          }
+                        ></img>
                       </Link>
                     </div>
                   );

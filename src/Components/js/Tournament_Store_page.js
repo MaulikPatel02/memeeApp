@@ -75,7 +75,7 @@ import TournamentFill from "../images/Tournament_page/Tournamet_2.png";
 import ProfileOutline from "../images/Home_page/profile.png";
 
 export default function Tournament_Store_page({ theme, setTheme }) {
-  // const [theme, setTheme] = useState("Default_theme_Navbar_color");
+ 
 
   const Default_ThemechangeMode = () => {
     setTheme("Default_theme_Navbar_color");

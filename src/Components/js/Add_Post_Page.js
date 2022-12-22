@@ -88,6 +88,7 @@ export default function Add_Post_Page() {
           <input
             id="fileupload2"
             type="file"
+            accept="image/*,video/mp4,video/webm"
             onChange={handleImageUpload}
             ref={imageUploader}
           ></input>

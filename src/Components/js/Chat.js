@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 import "../Css/Chat.css";
 import back from "../images/Chat_page/back.png";
 import Chat_profile from "../images/Chat_page/Chat_profile.png";
 import { Link } from "react-router-dom";
 import Active from "../images/Message_page/Active.png";
 import Gallery from "../images/Chat_page/Gallery.png";
-import send from "../images/Chat_page/send.png";
 import emoji from "../images/Chat_page/emoji.png";
-import ScrollableFeed from 'react-scrollable-feed'
 
+const socket = io.connect(`${process.env.REACT_APP_2_BASE_URL}`);
 export default function Chat() {
-  const [inputList, setInputList] = useState("");
-  const [Item, setItem] = useState([]);
+  const [message, setMessage] = useState("");
+  const [messageReceived, setMessageReceived] = useState("");
+const sendMessage=()=>{
+  socket.emit("send_message", { message});
+}
 
-  const itemEvent = (event) => {
-    setInputList(event.target.value);
-  };
-  const listOfItem = () => {
-    setItem((oldItems) => {
-      return [...oldItems, inputList];
-    });
-    setInputList("");
-  };
+useEffect(() => {
+  socket.on("receive_message", (data) => {
+    setMessageReceived(data.message);
+  });
+}, [socket]);
+
 
   return (
     <>
@@ -48,17 +48,13 @@ export default function Chat() {
             <h5>Are You Enjying Memee App ?</h5>
           </div>
 
-          <ScrollableFeed>
-          {Item.map((itemVal, index) => {
-            return (
-              <div key={index} className="user_chat_1_1">
+      
+              <div className="user_chat_1_1">
                 <div className="user_chat_1">
-                  <h5>{itemVal}</h5>
+                  <h5>{messageReceived}</h5>
                 </div>
               </div>
-            );
-          })}
-          </ScrollableFeed>
+   
         </div>
 
         <div className="chat_keyboard">
@@ -66,15 +62,15 @@ export default function Chat() {
           <div className="chat_input">
             <input
               type="text"
-              onChange={itemEvent}
-              value={inputList}
+              onChange={(event) => {
+                setMessage(event.target.value);
+              }}
               placeholder="Aa"
             ></input>
             <img id="chat_emoji" src={emoji}></img>
           </div>
-          {/* <img src={send}></img> */}
           <svg
-            onClick={listOfItem}
+            onClick={sendMessage}
             width="30"
             height="40"
             viewBox="0 0 23 25"

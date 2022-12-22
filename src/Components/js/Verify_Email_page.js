@@ -14,17 +14,17 @@ export default function Verify_Email_page() {
   });
   const location = useLocation();
   const Navigate = useNavigate();
-  console.log(OTP_Obj.first, OTP_Obj.second, OTP_Obj.third, OTP_Obj.fourth);
+
   useEffect(() => {}, []);
 
   let digitValidate = function (ele) {
-    console.log(ele.value);
+
     ele.value = ele.value.replace(/[^0-9]/g, "");
   };
 
   let tabChange = (val) => {
     let ele = document.querySelectorAll("input");
-    console.log("call");
+
     if (ele[val - 1].value != "") {
       ele[val].focus();
     } else if (ele[val - 1].value == "") {

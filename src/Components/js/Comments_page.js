@@ -92,7 +92,7 @@ export default function Comments_page() {
             {userData.map((itemVal, index) => {
               return (
                 <div key={index} className="User_comments">
-                  {console.log("comments length", itemVal.length)}
+                
                   <div className="cmd_User_img">
                     <img
                       id="commentsuserprofile2"

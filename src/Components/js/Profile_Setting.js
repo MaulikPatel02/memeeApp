@@ -1,10 +1,17 @@
 import React from "react";
 import "../Css/Profile_Setting.css";
 import Back_Arrow from "../images/Inbox_page/Back_Arrow.png";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import move from "../images/Settings_page/move.png";
 
 export default function Profile_Setting() {
+  const Navigate = useNavigate();
+  const logout=()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('userdata');
+    Navigate("/On_bording_page");
+  }
+
   const userName=JSON.parse(localStorage.getItem('userdata')).name
   return (
     <>
@@ -53,7 +60,7 @@ export default function Profile_Setting() {
           <div className="P_S">
             <div className="P_Setting_1">
               <div className="P_Setting_1_1">
-                {/* <img src={Belling_details}></img> */}
+            
                 <svg
                   width="21"
                   height="19"
@@ -85,7 +92,6 @@ export default function Profile_Setting() {
           <div className="P_S">
             <div className="P_Setting_1">
               <div className="P_Setting_1_1">
-                {/* <img src={Notification}></img> */}
                 <svg
                   width="18"
                   height="20"
@@ -142,6 +148,14 @@ export default function Profile_Setting() {
             </div>
           </div>
         </Link>
+
+        <div className="logout">
+     
+          <button onClick={logout} >Logout</button>
+        </div>
+        <div className="logout">
+          <button >Delete Account</button>
+        </div>
       </div>
     </>
   );

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../Css/Sign_in_page.css";
 import Back_Arrow from "../images/Back_Arrow.png";
 import { Link, useNavigate } from "react-router-dom";
-import { signInUser } from "../../redux/AuthSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -17,7 +16,6 @@ export default function Sign_in_page() {
   const [password, setPassword] = useState("");
 
   async function signIn() {
-    console.table(email, password);
     const sendData = JSON.stringify({
       email: email,
       password: password,
@@ -31,15 +29,14 @@ export default function Sign_in_page() {
       },
       data: sendData,
     };
-    console.log("userdata", sendData);
+
 
     axios(config)
       .then(function (response) {
-        console.log("res", response.data);
         if (response.data.status == 200) {
           // toast.success(response.data.message);
           localStorage.setItem("userdata",JSON.stringify( response.data.data));
-          console.log("tokens");
+         
           localStorage.setItem("token", response.data.data.tokens[0].token);
 
           Navigate("/Home_page");
@@ -51,7 +48,7 @@ export default function Sign_in_page() {
         console.log(error);
         toast.error(error.response.data.message);
       });
-    console.log(signInUser());
+
   }
 
   return (

@@ -35,6 +35,16 @@
     font-weight: 600;
     background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%);
 }
+#follo2{
+    width: 120px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 20px;
+    border-style: none;
+    color: black;
+    font-weight: 600;
+    background: white;
+}
 #mess{
     width: 120px;
     height: 40px;

@@ -44,7 +44,7 @@ export default function Sign_up_page() {
 
     axios(config)
       .then(function (response) {
-        console.log(response.data);
+       
         if (response.data.status == 200) {
           toast.success(response.data.message);
           Navigate("/Sign_in_page");
@@ -55,7 +55,7 @@ export default function Sign_up_page() {
       .catch(function (error) {
         console.log(error);
       });
-    console.log(signUpUser());
+
   }
   return (
     <>

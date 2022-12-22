@@ -21,17 +21,17 @@ export default function Tournamet() {
         <div className="home_page_Header">
           <div className="Explore_name2">
             <h2>Tournament </h2>
-            <img src={Info_Circle}></img>
+            <Link to="/Faq_page"> <img src={Info_Circle}></img> </Link>
           </div>
           <div className="notiadd">
             <Link to="/Inbox">
-              {" "}
+            
               <div className="Home_Notification">
                 <img src={Notification}></img>
               </div>
             </Link>
             <Link to="/Add_Coins_page">
-              {" "}
+             
               <div className="add_coin">
                 <img src={Add}></img>
                 <h3>7412</h3>
@@ -170,35 +170,7 @@ export default function Tournamet() {
           </div>
         </Modal>
 
-        {/* <div className="navbar">
-          <div className="home2">
-            <img src={Home}></img>
-            <h6>Home</h6>
-          </div>
-          <Link to="/Expolor_page">
-            {" "}
-            <div className="home2">
-              <img src={explore}></img>
-              <h6>Explore</h6>
-            </div>
-          </Link>
-          &nbsp;
-          <div className="home3">
-            <img src={m_add}></img>
-          </div>
-          &nbsp;
-          <div className="home">
-            <img src={tournament}></img>
-            <h6>Tournament</h6>
-          </div>
-          <Link to="/Profile">
-            {" "}
-            <div className="home2">
-              <img src={profile}></img>
-              <h6>Profile</h6>
-            </div>
-          </Link>
-        </div> */}
+        
         <Navbar
           HomeColor={"gray"}
           ExploreColor={"gray"}

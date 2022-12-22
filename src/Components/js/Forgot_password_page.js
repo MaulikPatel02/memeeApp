@@ -12,7 +12,7 @@ export default function Forgot_password_page() {
   const Navigate = useNavigate();
 
   async function emailSend() {
-    console.log("email,", email);
+  
 
     var config = {
       method: "post",
@@ -28,7 +28,7 @@ export default function Forgot_password_page() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        // console.log(JSON.stringify(response.data.data.code));
+      
         if (response.data.status == 200) {
           toast.success(response.data.message);
           Navigate("/Verify_Email_page", {

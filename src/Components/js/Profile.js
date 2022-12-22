@@ -5,14 +5,12 @@ import Profile_setting from "../images/Profile_page/Profile_setting.png";
 import Profile_edit from "../images/Profile_page/Profile_edit.png";
 import Add from "../images/Home_page/Add.png";
 import Coin from "../images/Home_page/Coin.png";
-import Profile_user_img from "../images/Profile_page/Profile_user_img.png";
+
 import Budge_1 from "../images/Profile_page/Budge_1.png";
 import Budge_2 from "../images/Profile_page/Budge_2.png";
 import Budge_3 from "../images/Profile_page/Budge_3.png";
-import post_1 from "../images/Profile_page/post_1.png";
-import post_2 from "../images/Profile_page/post_2.png";
-import post_1_1 from "../images/Profile_page/T_post_1.png";
-import post_2_2 from "../images/Profile_page/T_post_2.png";
+
+
 import Navbar from "./Navbar";
 import HomeOutline from "../images/Explore_page/Home.png";
 import ExploreOutline from "../images/Home_page/explore.png";
@@ -30,6 +28,8 @@ export default function Profile() {
   const userId = JSON.parse(localStorage.getItem("userdata"))._id;
 
   const [tableData, setTableData] = useState([]);
+
+  
 
   //  GET APi Apply
 
@@ -60,56 +60,7 @@ export default function Profile() {
 
   // END GET APi
 
-  const tableData2 = [
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-    {
-      id: 1,
-      post: post_1_1,
-    },
-    {
-      id: 1,
-      post: post_2_2,
-    },
-  ];
+  
 
   const [showT, setShowT] = useState(false);
   const ShowTourPage = () => {
@@ -166,12 +117,13 @@ export default function Profile() {
                 </div>
                 <span>|</span>
                 <div className="P_f_1">
-                  <h3>283k</h3>
+                  <h3>{tableData.followers}</h3>
                   <h4>Followers</h4>
                 </div>
                 <span>|</span>
                 <div className="P_f_1">
-                  <h3>488</h3>
+                  <h3>{tableData.following?.length}</h3>
+                 
                   <h4>Followings</h4>
                 </div>
               </div>
